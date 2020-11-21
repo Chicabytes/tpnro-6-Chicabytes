@@ -1,0 +1,50 @@
+﻿@model List<Cadete> 
+
+<div class="card">
+
+    <h5 class="card-header info-color white-text text-center py-4">
+        <strong>Lista de Cadetes</strong>
+    </h5>
+
+    <p>Cadetes</p>
+    <table id="tablita" class="table" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th class="th-sm">ID</th>
+                <th class="th-sm">Nombre</th>
+                <th class="th-sm">Direccion</th>
+                <th class="th-sm">Telefono</th>
+                <th class="th-sm">Modificar</th>
+                <th class="th-sm">Eliminar</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{ foreach (var Cadete in Model)
+                {
+                        <tr>
+                            <td>@Cadete.Id</td>
+                            <td>@Cadete.Nombre</td>
+                            <td>@Cadete.Direccion</td>
+                            <td>@Cadete.Telefono</td>
+                            <td>
+                                <form asp-action="ModificarCadete" method="post" class="form-group">
+                                    <input type="hidden" name="_id" value="@Cadete.Id" />
+                                    <button type="submit" class="btn btn-outline-info waves-effect">✏️</button>
+                                </form>
+                            </td>
+                            <td>
+                                <form asp-action="BajaCadete" aps-method="post" class="form-group">
+                                    <input type="hidden" name="_id" value="@Cadete.Id" />
+                                    <button type="submit" class="btn btn-outline-danger waves-effect">🗑️</button>
+                                </form>
+                            </td>
+                        </tr>
+
+                }
+            }
+        </tbody>
+    </table>
+    <form asp-action="AltaCadete" class="form-group">
+        <button type="submit" class="btn btn-outline-info waves-effect">Agregar Cadete</button>
+    </form>
+</div>

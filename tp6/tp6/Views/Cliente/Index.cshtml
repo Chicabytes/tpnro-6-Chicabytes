@@ -1,0 +1,52 @@
+﻿@model List<Cliente>
+
+<div class="card">
+
+    <h5 class="card-header info-color white-text text-center py-4">
+        <strong>Lista de Clientes</strong>
+    </h5>
+
+    <p>Clientes</p>
+    <table id="tablita" class="table" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th class="th-sm">ID</th>
+                <th class="th-sm">Nombre</th>
+                <th class="th-sm">Direccion</th>
+                <th class="th-sm">Telefono</th>
+                <th class="th-sm">Tipo de Envio</th>
+                <!--<th class="th-sm">Modificar</th>
+                <th class="th-sm">Eliminar</th>-->
+            </tr>
+        </thead>
+        <tbody>
+            @{ foreach (var Cliente in Model)
+                {
+                    <tr>
+                        <td>@Cliente.Id</td>
+                        <td>@Cliente.Nombre</td>
+                        <td>@Cliente.Direccion</td>
+                        <td>@Cliente.Telefono</td>
+                        <td>@Cliente.Tipo</td>
+                        <!--<td>
+                            <form asp-action="ModificarCadete" method="post" class="form-group">
+                                <input type="hidden" name="_id" value="Cliente.Id" />
+                                <button type="submit" class="btn btn-outline-info waves-effect">✏️</button>
+                            </form>
+                        </td>
+                        <td>
+                            <form asp-action="BajaCadete" aps-method="post" class="form-group">
+                                <input type="hidden" name="_id" value="Cliente.Id" />
+                                <button type="submit" class="btn btn-outline-danger waves-effect">🗑️</button>
+                            </form>
+                        </td>-->
+                    </tr>
+
+                }
+            }
+        </tbody>
+    </table>
+    <!--<form asp-action="AltaCadete" class="form-group">
+        <button type="submit" class="btn btn-outline-info waves-effect">Agregar Cadete</button>
+    </form>-->
+</div>
