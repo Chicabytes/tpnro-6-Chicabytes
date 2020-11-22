@@ -14,16 +14,24 @@ namespace tp6
     {
         private int id;
         private bool cupon;
-        private float costo_total;
+        private double costo_total;
         private TipoPedido tipo;
         //private List<Pedido> listaPedidos;
 
         public bool Cupon { get => cupon; set => cupon = value; }
-        public float Costo_total { get => costo_total; set => costo_total = value; }
+        public double Costo_total { get => costo_total; set => costo_total = value; }
         public TipoPedido Tipo { get => tipo; set => tipo = value; }
         public int Id { get => id; set => id = value; }
 
-        public Cliente(int _id, string _Nombre, string _Direccion, string _Telefono, int _tipoenvio) : base(_Nombre, _Direccion, _Telefono)
+        public Cliente() : base()
+        {
+            id = 0;
+            cupon = false;
+            costo_total = 0;
+            Tipo = 0;
+        }
+
+        public Cliente(int _id, string _Nombre, string _Direccion, string _Telefono, int _tipoenvio, bool _cupon, double _costo) : base(_Nombre, _Direccion, _Telefono)
         {
             //this.listaPedidos = new List<Pedido>();
             Id = _id;
@@ -43,6 +51,8 @@ namespace tp6
             {
                 listaPedidos.Add(_Pedido);
             }*/
+            Cupon = _cupon;
+            Costo_total = _costo;
         }
 
         public override string ToString()
@@ -73,6 +83,23 @@ namespace tp6
             }
             total = costo * _cant_pedidos + costo * porcentaje;
             return total;
+        }
+        public int NumeroEnvio()
+        {
+            int NT = 0;
+            switch (Tipo)
+            {
+                case TipoPedido.Delicado:
+                    NT = 0;
+                    break;
+                case TipoPedido.Express:
+                    NT = 1;
+                    break;
+                case TipoPedido.Ecologico:
+                    NT = 2;
+                    break;
+            }
+            return NT;
         }
     }
 }

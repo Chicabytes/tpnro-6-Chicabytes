@@ -1,14 +1,14 @@
-﻿@model Cadete
+﻿@model Cliente
 
 <div class="card">
 
     <h5 class="card-header info-color white-text text-center py-4">
-        <strong>Alta Cadete</strong>
+        <strong>Modificar Cliente</strong>
     </h5>
     <br>
     <div class="card-body px-lg-5 pt-0">
         <form class="text-center" style="color: #757575;" asp-action="Modificar" method="post">
-            <input type="hidden" value="@Model.Id" asp-for="Id"/>
+            <input type="hidden" value="@Model.Id" asp-for="Id" />
             <div class="md-form">
                 <input class="form-control" type="text" asp-for="Nombre" value="@Model.Nombre">
                 <label asp-for="Nombre">Nombre</label>
@@ -22,11 +22,18 @@
                 <label asp-for="Telefono">Telefono</label>
             </div>
             <div class="md-form">
-                <select asp-for="TipoT" value="@Model.TipoT">
-                    <option value="0">Auto</option>
-                    <option value="1">Moto</option>
-                    <option value="2">Bicicleta</option>
+                <select asp-for="Tipo" value="@Model.Tipo">
+                    <option value="0">Delicado</option>
+                    <option value="1">Express</option>
+                    <option value="2">Ecologico</option>>
                 </select>
+            </div>
+            <div class="md-form">
+                ¿Posee cupon de descuento?
+                <label>
+                    <input type="checkbox" asp-for="Cupon" value="true">Si
+                    <input type="checkbox" asp-for="Cupon" value="false">No
+                </label>
             </div>
             <button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0" type="submit">Enviar</button>
         </form>

@@ -15,38 +15,39 @@
                 <th class="th-sm">Direccion</th>
                 <th class="th-sm">Telefono</th>
                 <th class="th-sm">Tipo de Envio</th>
-                <!--<th class="th-sm">Modificar</th>
-                <th class="th-sm">Eliminar</th>-->
+                <th class="th-sm">Cupon</th>
+                <th class="th-sm">Modificar</th>
+                <th class="th-sm">Eliminar</th>
             </tr>
         </thead>
         <tbody>
             @{ foreach (var Cliente in Model)
                 {
-                    <tr>
-                        <td>@Cliente.Id</td>
-                        <td>@Cliente.Nombre</td>
-                        <td>@Cliente.Direccion</td>
-                        <td>@Cliente.Telefono</td>
-                        <td>@Cliente.Tipo</td>
-                        <!--<td>
-                            <form asp-action="ModificarCadete" method="post" class="form-group">
-                                <input type="hidden" name="_id" value="Cliente.Id" />
-                                <button type="submit" class="btn btn-outline-info waves-effect">✏️</button>
-                            </form>
-                        </td>
-                        <td>
-                            <form asp-action="BajaCadete" aps-method="post" class="form-group">
-                                <input type="hidden" name="_id" value="Cliente.Id" />
-                                <button type="submit" class="btn btn-outline-danger waves-effect">🗑️</button>
-                            </form>
-                        </td>-->
-                    </tr>
-
+                        <tr>
+                            <td>@Cliente.Id</td>
+                            <td>@Cliente.Nombre</td>
+                            <td>@Cliente.Direccion</td>
+                            <td>@Cliente.Telefono</td>
+                            <td>@Cliente.Tipo</td>
+                            <td>@Cliente.Cupon</td>
+                            <td>
+                                <form asp-action="ModificarCliente" method="post" class="form-group">
+                                    <input type="hidden" name="_id" value="@Cliente.Id" />
+                                    <button type="submit" class="btn btn-outline-info waves-effect">✏️</button>
+                                </form>
+                            </td>
+                            <td>
+                                <form asp-action="BajaCliente" aps-method="post" class="form-group">
+                                    <input type="hidden" name="_id" value="@Cliente.Id" />
+                                    <button type="submit" class="btn btn-outline-danger waves-effect">🗑️</button>
+                                </form>
+                            </td>
+                        </tr>
                 }
             }
         </tbody>
     </table>
-    <!--<form asp-action="AltaCadete" class="form-group">
-        <button type="submit" class="btn btn-outline-info waves-effect">Agregar Cadete</button>
-    </form>-->
+    <form asp-action="AltaCliente" class="form-group">
+        <button type="submit" class="btn btn-outline-info waves-effect">Nuevo Cliente</button>
+    </form>
 </div>

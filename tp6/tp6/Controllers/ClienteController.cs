@@ -22,12 +22,72 @@ namespace tp6.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            List<Cliente> NCliente;
+            RepoClientes repo = new RepoClientes();
+            NCliente = repo.GetAll();
+            return View(NCliente);
         }
-
-        public IActionResult Privacy()
+        [HttpPost]
+        public IActionResult CargaCliente(string Nombre, string Direccion, string Telefono, int TipoEnvio, bool cupon, double costo)
         {
-            return View();
+            try
+            {
+                Cliente Cli = new Cliente();
+                Cli.Nombre = Nombre;
+                Cli.Direccion = Direccion;
+                Cli.Telefono = Telefono;
+                switch (TipoEnvio)
+                {
+                    case 0:
+                        Cli.Tipo = TipoPedido.Delicado;
+                        break;
+                    case 1:
+                        Cli.Tipo = TipoPedido.Express;
+                        break;
+                    case 2:
+                        Cli.Tipo = TipoPedido.Ecologico;
+                        break;
+                }
+                RepoClientes repo = new RepoClientes();
+                repo.Alta(Cli);
+                return Redirect("/Cliente/Index");
+            }
+            catch (Exception ex)
+            {
+                return Content(ex.Message);
+            }
+        }
+        public IActionResult AltaCliente()
+        {
+            return View(new Cliente());
+        }
+        [HttpPost]
+        public IActionResult BajaCliente(int _id)
+        {
+            try
+            {
+                RepoClientes repo = new RepoClientes();
+                repo.Baja(_id);
+                return Redirect("/Cliente/Index");
+            }
+            catch (Exception ex)
+            {
+                string error = ex.Message;
+                return Content(error);
+            }
+        }
+        public IActionResult ModificarCliente(int _id)
+        {
+            RepoClientes repo = new RepoClientes();
+            Cliente Cli = repo.Buscar(_id);
+            return View(Cli);
+        }
+        [HttpPost]
+        public IActionResult Modificar(Cliente Cli)
+        {
+            RepoClientes repo = new RepoClientes();
+            repo.Modificar(Cli);
+            return Redirect("/Cliente/Index");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
