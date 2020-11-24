@@ -24,6 +24,7 @@ namespace tp6.Controllers
         {
             RepoPedidos repo = new RepoPedidos();
             List<Pedido> LPedidos = repo.GetAll(id);
+            ViewBag.id = id;
             return View(LPedidos);
         }
 

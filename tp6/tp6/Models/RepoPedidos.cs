@@ -28,19 +28,16 @@ namespace tp6.Models
             return NPedidos;
         }
 
-        public void Alta()
+        public void Alta(Pedido _pe, int idCliente)
         {
             string cadena = "Data Source=" + Path.Combine(Directory.GetCurrentDirectory(), "Data\\tp6.db");
             var conexion = new SQLiteConnection(cadena);
             conexion.Open();
             var command = conexion.CreateCommand();
-            command.CommandText = "Insert Into Clientes(NombreCliente, DireccionCliente, TelefonoCliente, TipoEnvio, Cupon, CostoTotal) values (@NombreCliente, @DireccionCliente, @TelefonoCliente, @TipoEnvio, @Cupon, @CostoTotal)";
-            command.Parameters.AddWithValue("@NombreCliente", Cli.Nombre);
-            command.Parameters.AddWithValue("@DireccionCliente", Cli.Direccion);
-            command.Parameters.AddWithValue("@TelefonoCliente", Cli.Telefono);
-            command.Parameters.AddWithValue("@TipoEnvio", Cli.Tipo);
-            command.Parameters.AddWithValue("@Cupon", Cli.Cupon);
-            command.Parameters.AddWithValue("@CostoTotal", Cli.Costo_total);
+            command.CommandText = "Insert Into Pedidos(Observacion, EstadoPedido, idCliente) values (@Obs, @Estado, @idCli)";
+            command.Parameters.AddWithValue("@Obs", _pe.Obs);
+            command.Parameters.AddWithValue("@Estado", _pe.Estado_actual);
+            command.Parameters.AddWithValue("@idCli", idCliente);
             command.ExecuteNonQuery();
             conexion.Close();
         }
