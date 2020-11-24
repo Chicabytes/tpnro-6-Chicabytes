@@ -16,6 +16,7 @@
                 <th class="th-sm">Telefono</th>
                 <th class="th-sm">Tipo de Envio</th>
                 <th class="th-sm">Cupon</th>
+                <th class="th-sm">Agregar Pedido</th>
                 <th class="th-sm">Modificar</th>
                 <th class="th-sm">Eliminar</th>
             </tr>
@@ -30,6 +31,12 @@
                             <td>@Cliente.Telefono</td>
                             <td>@Cliente.Tipo</td>
                             <td>@Cliente.Cupon</td>
+                            <td>
+                                <form asp-controller="PedidoController" asp-action="Index" method="post" class="form-group">
+                                    <input type="hidden" name="_id" value="@Cliente.Id" />
+                                    <button type="button" class="btn btn-outline-success waves-effect">@Html.ActionLink("➕", "Index", "Pedido", new { id = Cliente.Id }, null)</button>
+                                </form>
+                            </td>
                             <td>
                                 <form asp-action="ModificarCliente" method="post" class="form-group">
                                     <input type="hidden" name="_id" value="@Cliente.Id" />

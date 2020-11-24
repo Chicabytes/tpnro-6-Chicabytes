@@ -8,7 +8,7 @@
         Entregado = 3
     }
 
-    class Pedido
+    public class Pedido
     {
         private int numpedido;
         private string obs;

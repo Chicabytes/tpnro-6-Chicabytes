@@ -1,0 +1,49 @@
+﻿@model List<Pedido>
+
+<div class="card">
+
+    <h5 class="card-header info-color white-text text-center py-4">
+        <strong>Lista de Pedidos</strong>
+    </h5>
+
+    <p>Pedidos</p>
+    <table id="tablita" class="table" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th class="th-sm">ID</th>
+                <th class="th-sm">Nombre</th>
+                <th class="th-sm">Observacion</th>
+                <th class="th-sm">Estado</th>
+                <th class="th-sm">Modificar</th>
+                <th class="th-sm">Eliminar</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{ foreach (var Pedido in Model)
+                {
+                    <tr>
+                        <td>@Pedido.Numpedido</td>
+                        <td>@Pedido.Obs</td>
+                        <td>@Pedido.Estado_actual</td>
+                        <td>
+                            <form asp-action="ModificarCadete" method="post" class="form-group">
+                                <input type="hidden" name="_id" value="@Pedido.Numpedido" />
+                                <button type="submit" class="btn btn-outline-info waves-effect">✏️</button>
+                            </form>
+                        </td>
+                        <td>
+                            <form asp-action="BajaCadete" aps-method="post" class="form-group">
+                                <input type="hidden" name="_id" value="@Pedido.Numpedido" />
+                                <button type="submit" class="btn btn-outline-danger waves-effect">🗑️</button>
+                            </form>
+                        </td>
+                    </tr>
+
+                }
+            }
+        </tbody>
+    </table>
+    <form asp-action="AltaPedido" class="form-group">
+        <button type="submit" class="btn btn-outline-info waves-effect">Agregar Producto</button>
+    </form>
+</div>

@@ -20,9 +20,11 @@ namespace tp6.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(int id)
         {
-            return View();
+            RepoPedidos repo = new RepoPedidos();
+            List<Pedido> LPedidos = repo.GetAll(id);
+            return View(LPedidos);
         }
 
         public IActionResult Privacy()
