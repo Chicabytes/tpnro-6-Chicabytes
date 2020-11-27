@@ -8,6 +8,7 @@ using System.Data.SQLite;
 using System.Linq;
 using System.Threading.Tasks;
 using tp6.Models;
+using tp6.ViewModel;
 
 namespace tp6.Controllers
 {
@@ -22,21 +23,37 @@ namespace tp6.Controllers
 
         public IActionResult Index(int id)
         {
+
             RepoPedidos repo = new RepoPedidos();
-            List<Pedido> LPedidos = repo.GetAll(id);
-            ViewBag.id = id;
-            return View(LPedidos);
+            AltaPedidoViewModel Pedido = new AltaPedidoViewModel()
+            {
+                ListadoDePedidos = repo.GetAll(id),
+                IdCliente = id,
+             
+            };
+            
+            return View(Pedido);
         }
 
-        public IActionResult AltaPedido()
+        public IActionResult AltaPedido(int IdPedido)
         {
             return View(new Pedido());
         }
-        public IActionResult CargaPedido(Pedido _pe)
+        public IActionResult CargaPedido(AltaPedidoViewModel pe)
         {
             RepoPedidos repo = new RepoPedidos();
-            repo.Alta(_pe, ViewBag.id);
-            return Redirect("/Pedido/Index");
+            Pedido Pedido = new Pedido()
+            {
+                Estado_actual = pe.Estado_actual,
+                Obs = pe.Observacion,
+                NCliente = new Cliente()
+                { 
+                    Id = pe.IdCliente
+                }
+            };
+
+            repo.Alta(Pedido);
+            return Redirect("/Pedido/Index?id=" + pe.IdCliente);
         }
 
         public IActionResult ModificarPedido()

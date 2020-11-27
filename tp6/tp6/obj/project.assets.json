@@ -77,23 +77,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\giuli\\.nuget\\packages\\": {},
+    "C:\\Users\\Usuario\\.nuget\\packages\\": {},
     "C:\\Microsoft\\Xamarin\\NuGet\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\giuli\\Documents\\Facultad\\SEGUNDO AÑO\\Segundo Cuatrimestre\\Taller2\\Trabajos Practicos\\tpnro-6-Chicabytes\\tp6\\tp6\\tp6.csproj",
+      "projectUniqueName": "C:\\Repositorios Git\\tmp\\tp6\\tp6\\tp6.csproj",
       "projectName": "tp6",
-      "projectPath": "C:\\Users\\giuli\\Documents\\Facultad\\SEGUNDO AÑO\\Segundo Cuatrimestre\\Taller2\\Trabajos Practicos\\tpnro-6-Chicabytes\\tp6\\tp6\\tp6.csproj",
-      "packagesPath": "C:\\Users\\giuli\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\giuli\\Documents\\Facultad\\SEGUNDO AÑO\\Segundo Cuatrimestre\\Taller2\\Trabajos Practicos\\tpnro-6-Chicabytes\\tp6\\tp6\\obj\\",
+      "projectPath": "C:\\Repositorios Git\\tmp\\tp6\\tp6\\tp6.csproj",
+      "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
+      "outputPath": "C:\\Repositorios Git\\tmp\\tp6\\tp6\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Microsoft\\Xamarin\\NuGet\\"
       ],
       "configFilePaths": [
-        "C:\\Users\\giuli\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Usuario\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],

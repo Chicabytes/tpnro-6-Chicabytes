@@ -28,18 +28,25 @@ namespace tp6.Models
             return NPedidos;
         }
 
-        public void Alta(Pedido _pe, int idCliente)
+        public void Alta(Pedido _pe)
         {
-            string cadena = "Data Source=" + Path.Combine(Directory.GetCurrentDirectory(), "Data\\tp6.db");
-            var conexion = new SQLiteConnection(cadena);
-            conexion.Open();
-            var command = conexion.CreateCommand();
-            command.CommandText = "Insert Into Pedidos(Observacion, EstadoPedido, idCliente) values (@Obs, @Estado, @idCli)";
-            command.Parameters.AddWithValue("@Obs", _pe.Obs);
-            command.Parameters.AddWithValue("@Estado", _pe.Estado_actual);
-            command.Parameters.AddWithValue("@idCli", idCliente);
-            command.ExecuteNonQuery();
-            conexion.Close();
+            try
+            {
+                string cadena = "Data Source=" + Path.Combine(Directory.GetCurrentDirectory(), "Data\\tp6.db");
+                var conexion = new SQLiteConnection(cadena);
+                conexion.Open();
+                var command = conexion.CreateCommand();
+                command.CommandText = "Insert Into Pedidos(Observacion, EstadoPedido, idCliente) values (@Obs, @Estado, @idCli)";
+                command.Parameters.AddWithValue("@Obs", _pe.Obs);
+                command.Parameters.AddWithValue("@Estado", _pe.Estado_actual);
+                command.Parameters.AddWithValue("@idCli", _pe.NCliente.Id);
+                command.ExecuteNonQuery();
+                conexion.Close();
+            }
+            catch (Exception ex)
+            {
+                string asd = ex.ToString();
+            }
         }
 
         public void Modificacion()

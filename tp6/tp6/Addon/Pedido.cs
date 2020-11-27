@@ -18,7 +18,7 @@
         public int Numpedido { get => numpedido; set => numpedido = value; }
         public string Obs { get => obs; set => obs = value; }
         public Estado Estado_actual { get => estado_actual; set => estado_actual = value; }
-        internal Cliente NCliente { get => nCliente; set => nCliente = value; }
+        public Cliente NCliente { get => nCliente; set => nCliente = value; }
 
         public void NuevoPedido(int _numpedido, string _obs, int _estado)
         {
