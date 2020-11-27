@@ -28,8 +28,20 @@ namespace tp6.Controllers
             return View(LPedidos);
         }
 
-        public IActionResult Privacy()
+        public IActionResult AltaPedido()
         {
+            return View(new Pedido());
+        }
+        public IActionResult CargaPedido(Pedido _pe)
+        {
+            RepoPedidos repo = new RepoPedidos();
+            repo.Alta(_pe, ViewBag.id);
+            return Redirect("/Pedido/Index");
+        }
+
+        public IActionResult ModificarPedido()
+        {
+
             return View();
         }
 

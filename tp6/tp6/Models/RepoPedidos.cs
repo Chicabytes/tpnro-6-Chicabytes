@@ -41,5 +41,17 @@ namespace tp6.Models
             command.ExecuteNonQuery();
             conexion.Close();
         }
+
+        public void Modificacion()
+        {
+            string cadena = "Data Source=" + Path.Combine(Directory.GetCurrentDirectory(), "Data\\tp6.db");
+            var conexion = new SQLiteConnection(cadena);
+            conexion.Open();
+            var command = conexion.CreateCommand();
+            command.CommandText = "UPDATE Pedidos SET NombreCliente = @Nombre, DireccionCliente = @Direccion, TelefonoCliente = @Telefono, TipoEnvio = @Tipo, Cupon = @Cupon, CostoTotal = @CostoTotal WHERE idCliente = @ID";
+            
+            command.ExecuteNonQuery();
+            conexion.Close();
+        }
     }
 }
