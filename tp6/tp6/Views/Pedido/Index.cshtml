@@ -2,70 +2,75 @@
 
 <div class="card">
 
+    <!--Header-->
+    <div class="header pt-3 blue-gradient">
 
-    <form asp-action="CargaPedido" class="form-group">
-        <input type="hidden" asp-for="IdCliente" />
-        <div class="card">
-            <h5 class="card-header info-color white-text text-center py-4">
-                <strong>Nuevo Pedido</strong>
-            </h5>
-            <br>
-            <div class="card-body px-lg-5 pt-0">
-                <div class="md-form">
-                    <textarea asp-for="@Model.Observacion"></textarea>
+        <div class="row d-flex justify-content-center">
+            <h3 class="white-text mb-3 pt-3 font-weight-bold">Agregar Pedido</h3>
+        </div>
+    </div>
+        <div class="card-body mx-4 mt-4">
+            <form asp-action="CargaPedido" class="form-group">
+                <input type="hidden" asp-for="IdCliente" />
+                <br>
+                <div class="card-body px-lg-5 pt-0">
+                    <div class="md-form">
+                        <label for="Textarea6">Observacion</label><textarea asp-for="@Model.Observacion" class="form-control z-depth-1" id="Textarea6" rows="3" placeholder="Ingrese su observacion..."></textarea>
+                    </div>
+                    <div class="md-form">
+                        <select asp-for="Estado_actual" class="mdb-select md-form">
+                            <option value="0">Recibido</option>
+                            <option value="1">Preparado</option>
+                            <option value="2">En Camino</option>
+                            <option value="3">Entregado</option>
+                        </select>
+                    </div>
+                    <button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0" type="submit">Enviar</button>
                 </div>
-                <div class="md-form">
-                    <select asp-for="Estado_actual">
-                        <option value="0">Recibido</option>
-                        <option value="1">Preparado</option>
-                        <option value="2">En Camino</option>
-                        <option value="3">Entregado</option>
-                    </select>
-                </div>
-                <button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0" type="submit">Enviar</button>
+            </form>
+        </div>
+    <br />
+        <div class="header pt-3 blue-gradient">
+            <div class="row d-flex justify-content-center">
+                <h3 class="white-text mb-3 pt-3 font-weight-bold">Lista de Pedidos</h3>
             </div>
         </div>
-    </form>
-    <h5 class="card-header info-color white-text text-center py-4">
-        <strong>Lista de Pedidos</strong>
-    </h5>
-    <p>Pedidos</p>
-    <table id="tablita" class="table" cellspacing="0" width="100%">
-        <thead>
-            <tr>
-                <th class="th-sm">ID</th>
-                <th class="th-sm">Nombre</th>
-                <th class="th-sm">Observacion</th>
-                <th class="th-sm">Estado</th>
-                <th class="th-sm">Modificar</th>
-                <th class="th-sm">Eliminar</th>
-            </tr>
-        </thead>
-        <tbody>
-            @{ foreach (var Pedido in Model.ListadoDePedidos)
-                {
+        <div class="card-body mx-4 mt-4">
+            <table class="table" cellspacing="0" width="100%">
+                <thead>
                     <tr>
-                        <td>@Pedido.Numpedido</td>
-                        <td>@Pedido.Obs</td>
-                        <td>@Pedido.Estado_actual</td>
-                        <td>
-                            <form asp-action="ModificarCadete" method="post" class="form-group">
-                                <input type="hidden" name="_id" value="@Pedido.Numpedido" />
-                                <button type="submit" class="btn btn-outline-info waves-effect">✏️</button>
-                            </form>
-                        </td>
-                        <td>
-                            <form asp-action="BajaCadete" aps-method="post" class="form-group">
-                                <input type="hidden" name="_id" value="@Pedido.Numpedido" />
-                                <button type="submit" class="btn btn-outline-danger waves-effect">🗑️</button>
-                            </form>
-                        </td>
+                        <th class="th-sm">ID</th>
+                        <th class="th-sm">Observacion</th>
+                        <th class="th-sm">Estado</th>
+                        <th class="th-sm">Modificar</th>
+                        <th class="th-sm">Eliminar</th>
                     </tr>
+                </thead>
+                <tbody>
+                    @{ foreach (var Pedido in Model.ListadoDePedidos)
+                        {
+                            <tr>
+                                <td class="align-middle">@Pedido.Numpedido</td>
+                                <td class="align-middle">@Pedido.Obs</td>
+                                <td class="align-middle">@Pedido.Estado_actual</td>
+                                <td class="align-middle">
+                                    <form asp-action="ModificarCadete" method="post" class="form-group">
+                                        <input type="hidden" name="_id" value="@Pedido.Numpedido" />
+                                        <button type="submit" class="btn btn-outline-info waves-effect">✏️</button>
+                                    </form>
+                                </td>
+                                <td class="align-middle">
+                                    <form asp-action="BajaCadete" aps-method="post" class="form-group">
+                                        <input type="hidden" name="_id" value="@Pedido.Numpedido" />
+                                        <button type="submit" class="btn btn-outline-danger waves-effect">🗑️</button>
+                                    </form>
+                                </td>
+                            </tr>
 
-                }
-            }
-        </tbody>
-    </table>
-
-
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+ 
 </div>
