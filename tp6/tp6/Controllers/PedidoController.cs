@@ -25,25 +25,22 @@ namespace tp6.Controllers
         {
 
             RepoPedidos repo = new RepoPedidos();
-            AltaPedidoViewModel Pedido = new AltaPedidoViewModel()
+            PedidoViewModel Pedido = new PedidoViewModel()
             {
                 ListadoDePedidos = repo.GetAll(id),
                 IdCliente = id,
-             
+                CadeteCargado = repo.Cad(id),
+                IdCadete = repo.IDCad(id)
             };
-            
             return View(Pedido);
         }
 
-        public IActionResult AltaPedido(int IdPedido)
-        {
-            return View(new Pedido());
-        }
-        public IActionResult CargaPedido(AltaPedidoViewModel pe)
+        public IActionResult CargaPedido(PedidoViewModel pe)
         {
             RepoPedidos repo = new RepoPedidos();
             Pedido Pedido = new Pedido()
             {
+                Numpedido = pe.IdPedido,
                 Estado_actual = pe.Estado_actual,
                 Obs = pe.Observacion,
                 NCliente = new Cliente()
@@ -52,10 +49,9 @@ namespace tp6.Controllers
                 }
             };
 
-            repo.Alta(Pedido);
+            repo.Alta(Pedido, pe.IdCadete);
             return Redirect("/Pedido/Index?id=" + pe.IdCliente);
         }
-
         public IActionResult ModificarPedido()
         {
 
