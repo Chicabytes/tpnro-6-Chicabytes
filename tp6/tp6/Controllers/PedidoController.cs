@@ -52,10 +52,15 @@ namespace tp6.Controllers
             repo.Alta(Pedido, pe.IdCadete);
             return Redirect("/Pedido/Index?id=" + pe.IdCliente);
         }
-        public IActionResult ModificarPedido()
+        public IActionResult ModificarPedido(int _idPedido, int _idCliente)
         {
-
-            return View();
+            return View(new PedidoViewModel{ IdPedido = _idPedido, IdCliente = _idCliente});
+        }
+        public IActionResult Modificar(PedidoViewModel pe)
+        {
+            RepoPedidos repo = new RepoPedidos();
+            repo.Modificacion(pe);
+            return Redirect("/Pedido/Index?id=" + pe.IdCliente);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

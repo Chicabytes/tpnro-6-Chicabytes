@@ -95,7 +95,7 @@ namespace tp6.Models
             }
             
         }
-        public void Modificacion()
+        public void Modificacion(PedidoViewModel pe)
         {
             try
             {
@@ -103,8 +103,10 @@ namespace tp6.Models
                 var conexion = new SQLiteConnection(cadena);
                 conexion.Open();
                 var command = conexion.CreateCommand();
-                command.CommandText = "UPDATE Pedidos SET NombreCliente = @Nombre, DireccionCliente = @Direccion, TelefonoCliente = @Telefono, TipoEnvio = @Tipo, Cupon = @Cupon, CostoTotal = @CostoTotal WHERE idCliente = @ID";
-                
+                command.CommandText = "UPDATE Pedidos SET Observacion = @Obs, EstadoPedido = @Estado WHERE idPedido = @ID";
+                command.Parameters.AddWithValue("@Obs", pe.Observacion);
+                command.Parameters.AddWithValue("@Estado", pe.Estado_actual);
+                command.Parameters.AddWithValue("@ID", pe.IdPedido);
                 command.ExecuteNonQuery();
                 conexion.Close();
             }

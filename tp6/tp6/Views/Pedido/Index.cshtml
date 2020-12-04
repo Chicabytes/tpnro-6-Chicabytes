@@ -71,19 +71,19 @@
                             <td class="align-middle">@Pedido.Obs</td>
                             <td class="align-middle">@Pedido.Estado_actual</td>
                             <td class="align-middle">
-                                <form asp-action="ModificarCadete" method="post" class="form-group">
-                                    <input type="hidden" name="_id" value="@Pedido.Numpedido" />
+                                <form asp-action="ModificarPedido" method="post" class="form-group">
+                                    <input type="hidden" name="_idPedido" value="@Pedido.Numpedido" />
+                                    <input type="hidden" name="_idCliente" value="@Model.IdCliente" />
                                     <button type="submit" class="btn btn-outline-info waves-effect">✏️</button>
                                 </form>
                             </td>
                             <td class="align-middle">
-                                <form asp-action="BajaCadete" aps-method="post" class="form-group">
+                                <form asp-action="BajaPedido" aps-method="post" class="form-group">
                                     <input type="hidden" name="_id" value="@Pedido.Numpedido" />
                                     <button type="submit" class="btn btn-outline-danger waves-effect">🗑️</button>
                                 </form>
                             </td>
                         </tr>
-
                     }
                 }
             </tbody>

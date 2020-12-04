@@ -97,3 +97,4 @@ C:\Repositorios Git\tmp\tp6\tp6\obj\Debug\netcoreapp3.1\tp6.csproj.CopyComplete
 C:\Repositorios Git\tmp\tp6\tp6\obj\Debug\netcoreapp3.1\tp6.dll
 C:\Repositorios Git\tmp\tp6\tp6\obj\Debug\netcoreapp3.1\tp6.pdb
 C:\Repositorios Git\tmp\tp6\tp6\obj\Debug\netcoreapp3.1\tp6.genruntimeconfig.cache
+C:\Users\giuli\Documents\Facultad\SEGUNDO AÑO\Segundo Cuatrimestre\Taller2\Trabajos Practicos\tpnro-6-Chicabytes\tp6\tp6\obj\Debug\netcoreapp3.1\Razor\Views\Pedido\ModificarPedido.cshtml.g.cs
