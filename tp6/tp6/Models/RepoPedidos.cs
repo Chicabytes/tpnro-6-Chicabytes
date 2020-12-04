@@ -10,6 +10,8 @@ namespace tp6.Models
 {
     public class RepoPedidos
     { 
+
+
         public List<Pedido> GetAll(int _id)
         {
             List<Pedido> NPedidos = new List<Pedido>();
@@ -31,16 +33,16 @@ namespace tp6.Models
                     switch (Convert.ToInt32(reader["EstadoPedido"]))
                     {
                         case 0:
-                            ped.Estado_actual = Estado.Recibido;
+                            ped.Estado_actual = EstadoPedido.Recibido;
                             break;
                         case 1:
-                            ped.Estado_actual = Estado.Preparado;
+                            ped.Estado_actual = EstadoPedido.Preparado;
                             break;
                         case 2:
-                            ped.Estado_actual = Estado.EnCamino;
+                            ped.Estado_actual = EstadoPedido.EnCamino;
                             break;
                         case 3:
-                            ped.Estado_actual = Estado.Entregado;
+                            ped.Estado_actual = EstadoPedido.Entregado;
                             break;
                     }
                     NPedidos.Add(ped);
@@ -54,6 +56,89 @@ namespace tp6.Models
                 return NPedidos;
             }
         }
+
+
+        public List<Pedido> GetAll(EstadoPedido estado = EstadoPedido.Todos)
+        {
+            List<Pedido> NPedidos = new List<Pedido>();
+            PedidoViewModel PedidoVM = new PedidoViewModel();
+            try
+            {
+                string cadena = "Data Source=" + Path.Combine(Directory.GetCurrentDirectory(), "Data\\tp6.db");
+                var conexion = new SQLiteConnection(cadena);
+                conexion.Open();
+                var command = conexion.CreateCommand();
+                if (estado == EstadoPedido.Todos)
+                {
+                    command.CommandText = @"Select 
+                                        IdPedido,
+                                        NombreCliente,
+                                        Observacion,
+                                        NombreCadete,
+                                        EstadoPedido
+                                        From Pedidos
+                                        Inner Join Cadetes using (IdCadete)
+                                        Inner Join Clientes using (IdCliente);";
+                }
+                else
+                {
+                    command.CommandText = @"Select 
+                                        IdPedido,
+                                        NombreCliente,
+                                        Observacion,
+                                        NombreCadete,
+                                        EstadoPedido
+                                        From Pedidos
+                                        Inner Join Cadetes using (IdCadete)
+                                        Inner Join Clientes using (IdCliente);";
+                    command.Parameters.AddWithValue("@EstadoPedido", estado);
+                }
+
+
+                SQLiteDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    var ped = new Pedido();
+                    ped.Numpedido = Convert.ToInt32(reader["idPedido"]);
+
+                    ped.Numpedido = Convert.ToInt32(reader["idPedido"]); 
+                    ped.Obs = reader["Observacion"].ToString();
+                    ped.Estado_actual = (EstadoPedido)(Convert.ToInt32(reader["EstadoPedido"])) ;
+                    
+                    ped.NCliente = new Cliente();
+                    ped.NCliente.Nombre = reader["NombreCliente"].ToString();
+                    
+                    ped.Cadete = new Cadete();
+                    ped.Cadete.Nombre = reader["NombreCadete"].ToString();
+
+
+                    //switch (Convert.ToInt32(reader["EstadoPedido"]))
+                    //{
+                    //    case 0:
+                    //        ped.Estado_actual = EstadoPedido.Recibido;
+                    //        break;
+                    //    case 1:
+                    //        ped.Estado_actual = EstadoPedido.Preparado;
+                    //        break;
+                    //    case 2:
+                    //        ped.Estado_actual = EstadoPedido.EnCamino;
+                    //        break;
+                    //    case 3:
+                    //        ped.Estado_actual = EstadoPedido.Entregado;
+                    //        break;
+                    //}
+                    NPedidos.Add(ped);
+                }
+                reader.Close();
+                return NPedidos;
+            }
+            catch (Exception ex)
+            {
+                string excep = ex.ToString();
+                return NPedidos;
+            }
+        }
+
         public void Alta(Pedido _pe, int _idCad)
         {
             try

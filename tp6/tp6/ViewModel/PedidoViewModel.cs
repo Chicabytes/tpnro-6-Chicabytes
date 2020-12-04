@@ -9,7 +9,7 @@ namespace tp6.ViewModel
     {
         public int IdPedido { get; set; }
         public TipoPedido TPedido { get; set; }
-        public Estado Estado_actual { get; set; }
+        public EstadoPedido Estado_actual { get; set; }
         public int IdCliente { get; set; }
         public int IdCadete { get; set; }
         public Cadete CadeteCargado { get; set; }
@@ -27,3 +27,7 @@ namespace tp6.ViewModel
         }
     }
 }
+    //public class PedidoViewModel2
+    //{
+    //    public List<Pedido> ListadoDePedidos { get; set; }
+    //}

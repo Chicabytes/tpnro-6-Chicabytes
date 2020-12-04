@@ -1,7 +1,8 @@
 ﻿namespace tp6
 {
-    public enum Estado
+    public enum EstadoPedido
     {
+        Todos = -1,
         Recibido = 0,
         Preparado = 1,
         EnCamino = 2,
@@ -12,13 +13,15 @@
     {
         private int numpedido;
         private string obs;
-        private Estado estado_actual;
+        private EstadoPedido estado_actual;
         private Cliente nCliente;
+        private Cadete cadete;
 
         public int Numpedido { get => numpedido; set => numpedido = value; }
         public string Obs { get => obs; set => obs = value; }
-        public Estado Estado_actual { get => estado_actual; set => estado_actual = value; }
+        public EstadoPedido Estado_actual { get => estado_actual; set => estado_actual = value; }
         public Cliente NCliente { get => nCliente; set => nCliente = value; }
+        public Cadete Cadete { get => cadete; set => cadete = value; }
 
         public void NuevoPedido(int _numpedido, string _obs, int _estado)
         {
@@ -27,16 +30,16 @@
             switch (_estado)
             {
                 case 0:
-                    Estado_actual = Estado.Recibido;
+                    Estado_actual = EstadoPedido.Recibido;
                     break;
                 case 1:
-                    Estado_actual = Estado.Preparado;
+                    Estado_actual = EstadoPedido.Preparado;
                     break;
                 case 2:
-                    Estado_actual = Estado.EnCamino;
+                    Estado_actual = EstadoPedido.EnCamino;
                     break;
                 case 3:
-                    Estado_actual = Estado.Entregado;
+                    Estado_actual = EstadoPedido.Entregado;
                     break;
             }
         }

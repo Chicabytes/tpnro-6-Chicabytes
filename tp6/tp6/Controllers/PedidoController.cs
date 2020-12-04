@@ -34,6 +34,19 @@ namespace tp6.Controllers
             };
             return View(Pedido);
         }
+        public IActionResult Index2()
+        {
+
+           RepoPedidos repo = new RepoPedidos();
+            //PedidoViewModel Pedido = new PedidoViewModel()
+            //{
+            //    ListadoDePedidos = repo.GetAll(id),
+            //    IdCliente = id,
+            //    CadeteCargado = repo.Cad(id),
+            //    IdCadete = repo.IDCad(id)
+            //};
+            return View(repo.GetAll());
+        }
 
         public IActionResult CargaPedido(PedidoViewModel pe)
         {
