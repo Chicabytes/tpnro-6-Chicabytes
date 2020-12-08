@@ -13,11 +13,10 @@
                 <textarea asp-for="@Model.Observacion" class="form-control z-depth-1" id="Textarea6" rows="3" placeholder="Ingrese su observacion..."></textarea>
             </div>
             <div class="md-form">
-                <select asp-for="Estado_actual" class="mdb-select md-form" value="@Model.Estado_actual">
-                    <option value="0">Recibido</option>
-                    <option value="1">Preparado</option>
-                    <option value="2">En Camino</option>
-                    <option value="3">Entregado</option>
+                <select asp-for="TPedido" value="@Model.TPedido">
+                    <option value="0">Delicado</option>
+                    <option value="1">Express</option>
+                    <option value="2">Ecologico</option>>
                 </select>
             </div>
             <button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0" type="submit">Enviar</button>

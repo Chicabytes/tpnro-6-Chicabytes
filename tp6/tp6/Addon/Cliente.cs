@@ -38,7 +38,7 @@ namespace tp6
 
         public override string ToString()
         {
-            return "  Nombre: " + this.Nombre + "\n  Direccion: " + this.Direccion + "\n  Telefono: " + this.Telefono + "\n  Tipo de envio: " + Tipo.ToString();
+            return "  Nombre: " + this.Nombre + "\n  Direccion: " + this.Direccion + "\n  Telefono: " + this.Telefono;
         }
 
         /*public float CostoTotal(int _cant_pedidos)

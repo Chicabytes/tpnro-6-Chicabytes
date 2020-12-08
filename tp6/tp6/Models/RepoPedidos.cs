@@ -30,21 +30,8 @@ namespace tp6.Models
                     var ped = new Pedido();
                     ped.Numpedido = Convert.ToInt32(reader["idPedido"]);
                     ped.Obs = reader["Observacion"].ToString();
-                    switch (Convert.ToInt32(reader["EstadoPedido"]))
-                    {
-                        case 0:
-                            ped.Estado_actual = EstadoPedido.Recibido;
-                            break;
-                        case 1:
-                            ped.Estado_actual = EstadoPedido.Preparado;
-                            break;
-                        case 2:
-                            ped.Estado_actual = EstadoPedido.EnCamino;
-                            break;
-                        case 3:
-                            ped.Estado_actual = EstadoPedido.Entregado;
-                            break;
-                    }
+                    ped.Estado_actual = (EstadoPedido)Convert.ToInt32(reader["EstadoPedido"]);
+                    ped.Tipo = (TipoPedido)Convert.ToInt32(reader["TipoEnvio"]);
                     NPedidos.Add(ped);
                 }
                 reader.Close();
@@ -57,11 +44,9 @@ namespace tp6.Models
             }
         }
 
-
         public List<Pedido> GetAll(EstadoPedido estado = EstadoPedido.Todos)
         {
             List<Pedido> NPedidos = new List<Pedido>();
-            PedidoViewModel PedidoVM = new PedidoViewModel();
             try
             {
                 string cadena = "Data Source=" + Path.Combine(Directory.GetCurrentDirectory(), "Data\\tp6.db");
@@ -130,6 +115,7 @@ namespace tp6.Models
                     NPedidos.Add(ped);
                 }
                 reader.Close();
+                conexion.Close();
                 return NPedidos;
             }
             catch (Exception ex)
@@ -147,9 +133,10 @@ namespace tp6.Models
                 var conexion = new SQLiteConnection(cadena);
                 conexion.Open();
                 var command = conexion.CreateCommand();
-                command.CommandText = "Insert Into Pedidos(Observacion, EstadoPedido, idCliente, idCadete) values (@Obs, @Estado, @idCli, @idCad)";
+                command.CommandText = "Insert Into Pedidos(Observacion, TipoEnvio, EstadoPedido, idCliente, idCadete) values (@Obs, @TipoEnvio, @Estado, @idCli, @idCad)";
                 command.Parameters.AddWithValue("@Obs", _pe.Obs);
                 command.Parameters.AddWithValue("@Estado", _pe.Estado_actual);
+                command.Parameters.AddWithValue("@TipoEnvio", _pe.Tipo);
                 command.Parameters.AddWithValue("@idCli", _pe.NCliente.Id);
                 command.Parameters.AddWithValue("@idCad", _idCad);
                 command.ExecuteNonQuery();
@@ -200,6 +187,57 @@ namespace tp6.Models
                 string excep = ex.ToString();
             }
         }
+        public void Baja(int idPedido)
+        {
+            string cadena = "Data Source=" + Path.Combine(Directory.GetCurrentDirectory(), "Data\\tp6.db");
+            var conexion = new SQLiteConnection(cadena);
+            conexion.Open();
+            var command = conexion.CreateCommand();
+            command.CommandText = "Delete From Pedidos Where idPedido = @idPedido";
+            command.Parameters.AddWithValue("@idPedido", idPedido);
+            command.ExecuteNonQuery();
+            conexion.Close();
+        }
+        public Cadete CadeteAsignado(int IDPedido)
+        {
+            Cadete Cad = new Cadete();
+            try
+            {
+                string cadena = "Data Source=" + Path.Combine(Directory.GetCurrentDirectory(), "Data\\tp6.db");
+                var conexion = new SQLiteConnection(cadena);
+                conexion.Open();
+                var command = conexion.CreateCommand();
+                command.CommandText = @"Select
+                                        idCadete,
+                                        NombreCadete,
+                                        DireccionCadete,
+                                        TelefonoCadete,
+                                        TipoTransporte,
+                                        From Pedidos
+                                        Inner Join Cadetes using (idCadete);
+                                        Where idPedido = IDPedido";
+                command.Parameters.AddWithValue("@IDPedido", IDPedido);
+                SQLiteDataReader reader = command.ExecuteReader();
+                reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    Cad.Id = Convert.ToInt32(reader["idCadete"]);
+                    Cad.Nombre = reader["NombreCadete"].ToString();
+                    Cad.Direccion = reader["DireccionCadete"].ToString();
+                    Cad.Telefono = reader["TelefonoCadete"].ToString();
+                    Cad.TipoT = (TipoTransporte)Convert.ToInt32(reader["TipoTransporte"]);
+                }
+                reader.Close();
+                conexion.Close();
+                return Cad;
+            }
+            catch (Exception ex)
+            {
+                string excep = ex.ToString();
+                return Cad;
+            }
+        }
+        /*
         public Cadete Cad(int _idCliente)
         {
             Cadete Cad = new Cadete();
@@ -273,6 +311,6 @@ namespace tp6.Models
                 string excep = ex.ToString();
                 return id;
             }
-        }
+        }*/
     }
 }

@@ -1,5 +1,4 @@
-﻿@model List<Cadete> 
-
+﻿@model tp6.ViewModel.CadeteViewModel
 <div class="card">
 
     <h5 class="card-header info-color white-text text-center py-4">
@@ -20,7 +19,7 @@
             </tr>
         </thead>
         <tbody>
-            @{ foreach (var Cadete in Model)
+            @{ foreach (var Cadete in Model.ListaCadetes)
                 {
                         <tr>
                             <td>@Cadete.Id</td>

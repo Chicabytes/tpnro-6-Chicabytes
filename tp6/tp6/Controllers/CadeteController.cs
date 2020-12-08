@@ -8,6 +8,7 @@ using System.Data.SQLite;
 using System.Linq;
 using System.Threading.Tasks;
 using tp6.Models;
+using tp6.ViewModel;
 
 namespace tp6.Controllers
 {
@@ -22,10 +23,12 @@ namespace tp6.Controllers
         }
         public IActionResult Index()
         {
-            List<Cadete> NCadetes;
             RepoCadetes repo = new RepoCadetes();
-            NCadetes = repo.GetAll();
-            return View(NCadetes);
+            CadeteViewModel cadVM = new CadeteViewModel()
+            {
+                ListaCadetes = repo.GetAll()
+            };
+            return View(cadVM);
         }
         [HttpPost]
         public IActionResult CargaCadete(string Nombre, string Direccion, string Telefono, int TipoT)

@@ -16,36 +16,11 @@
                     <textarea asp-for="@Model.Observacion" class="form-control z-depth-1" id="Textarea6" rows="3" placeholder="Ingrese su observacion..."></textarea>
                 </div>
                 <div class="md-form">
-                    <select asp-for="Estado_actual" class="mdb-select md-form">
-                        <option value="0">Recibido</option>
-                        <option value="1">Preparado</option>
-                        <option value="2">En Camino</option>
-                        <option value="3">Entregado</option>
-                    </select>
-                </div>
-                <div class="md-form">
-                    <select asp-for="TPedido" value="@Model.TPedido">
+                    <select asp-for="TPedido">
                         <option value="0">Delicado</option>
                         <option value="1">Express</option>
                         <option value="2">Ecologico</option>>
                     </select>
-                </div>
-                <div class="md-form">
-                    @if (Model.IdCadete == 0)
-                    {
-
-                        <select asp-for="@Model.IdCadete">
-                            @foreach (var Cadetes in Model.InfoCadetes(Model.TPedido))
-                            {
-                                <option value="@Cadetes.Id">@Cadetes.Nombre</option>
-                            }
-                        </select>
-
-                    }
-                    else
-                    {
-                        <label>Su Cadete es: @Model.CadeteCargado.Nombre</label><input type="hidden" value="@Model.IdCadete" asp-for="@Model.IdCadete">
-                    }
                 </div>
                 <button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0" type="submit">Enviar</button>
             </div>
@@ -66,6 +41,7 @@
                     <th class="th-sm">ID</th>
                     <th class="th-sm">Observacion</th>
                     <th class="th-sm">Estado</th>
+                    <th class="th-sm">Tipo de Envio</th>
                     <th class="th-sm">Modificar</th>
                     <th class="th-sm">Eliminar</th>
                 </tr>
@@ -77,6 +53,7 @@
                             <td class="align-middle">@Pedido.Numpedido</td>
                             <td class="align-middle">@Pedido.Obs</td>
                             <td class="align-middle">@Pedido.Estado_actual</td>
+                            <td class="align-middle">@Pedido.Tipo</td>
                             <td class="align-middle">
                                 <form asp-action="ModificarPedido" method="post" class="form-group">
                                     <input type="hidden" name="_idPedido" value="@Pedido.Numpedido" />
@@ -86,7 +63,8 @@
                             </td>
                             <td class="align-middle">
                                 <form asp-action="BajaPedido" aps-method="post" class="form-group">
-                                    <input type="hidden" name="_id" value="@Pedido.Numpedido" />
+                                    <input type="hidden" name="idPed" value="@Pedido.Numpedido" />
+                                    <input type="hidden" name="idCli" value="@Model.IdCliente" />
                                     <button type="submit" class="btn btn-outline-danger waves-effect">🗑️</button>
                                 </form>
                             </td>
