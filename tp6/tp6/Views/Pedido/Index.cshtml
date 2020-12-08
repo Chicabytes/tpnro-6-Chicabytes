@@ -24,6 +24,13 @@
                     </select>
                 </div>
                 <div class="md-form">
+                    <select asp-for="TPedido" value="@Model.TPedido">
+                        <option value="0">Delicado</option>
+                        <option value="1">Express</option>
+                        <option value="2">Ecologico</option>>
+                    </select>
+                </div>
+                <div class="md-form">
                     @if (Model.IdCadete == 0)
                     {
 

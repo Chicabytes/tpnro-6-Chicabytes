@@ -28,26 +28,10 @@ namespace tp6.Controllers
             return View(NCliente);
         }
         [HttpPost]
-        public IActionResult CargaCliente(string Nombre, string Direccion, string Telefono, int TipoEnvio, bool cupon, double costo)
+        public IActionResult CargaCliente(Cliente Cli)
         {
             try
             {
-                Cliente Cli = new Cliente();
-                Cli.Nombre = Nombre;
-                Cli.Direccion = Direccion;
-                Cli.Telefono = Telefono;
-                switch (TipoEnvio)
-                {
-                    case 0:
-                        Cli.Tipo = TipoPedido.Delicado;
-                        break;
-                    case 1:
-                        Cli.Tipo = TipoPedido.Express;
-                        break;
-                    case 2:
-                        Cli.Tipo = TipoPedido.Ecologico;
-                        break;
-                }
                 RepoClientes repo = new RepoClientes();
                 repo.Alta(Cli);
                 return Redirect("/Cliente/Index");

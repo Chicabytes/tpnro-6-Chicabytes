@@ -23,7 +23,7 @@ namespace tp6.Models
                 SQLiteDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
-                    var cli = new Cliente(Convert.ToInt32(reader["idCliente"]), reader["NombreCliente"].ToString(), reader["DireccionCliente"].ToString(), reader["TelefonoCliente"].ToString(), Convert.ToInt32(reader["TipoEnvio"]), Convert.ToBoolean(reader["Cupon"]), Convert.ToDouble(reader["CostoTotal"]));
+                    var cli = new Cliente(Convert.ToInt32(reader["idCliente"]), reader["NombreCliente"].ToString(), reader["DireccionCliente"].ToString(), reader["TelefonoCliente"].ToString(), Convert.ToBoolean(reader["Cupon"]), Convert.ToDouble(reader["CostoTotal"]));
                     NClientes.Add(cli);
                 }
                 reader.Close();
@@ -44,11 +44,10 @@ namespace tp6.Models
                 var conexion = new SQLiteConnection(cadena);
                 conexion.Open();
                 var command = conexion.CreateCommand();
-                command.CommandText = "Insert Into Clientes(NombreCliente, DireccionCliente, TelefonoCliente, TipoEnvio, Cupon, CostoTotal) values (@NombreCliente, @DireccionCliente, @TelefonoCliente, @TipoEnvio, @Cupon, @CostoTotal)";
+                command.CommandText = "Insert Into Clientes(NombreCliente, DireccionCliente, TelefonoCliente, Cupon, CostoTotal) values (@NombreCliente, @DireccionCliente, @TelefonoCliente, @Cupon, @CostoTotal)";
                 command.Parameters.AddWithValue("@NombreCliente", Cli.Nombre);
                 command.Parameters.AddWithValue("@DireccionCliente", Cli.Direccion);
                 command.Parameters.AddWithValue("@TelefonoCliente", Cli.Telefono);
-                command.Parameters.AddWithValue("@TipoEnvio", Cli.Tipo);
                 command.Parameters.AddWithValue("@Cupon", Cli.Cupon);
                 command.Parameters.AddWithValue("@CostoTotal", Cli.Costo_total);
                 command.ExecuteNonQuery();
@@ -100,18 +99,6 @@ namespace tp6.Models
                     Cli.Nombre = reader["NombreCliente"].ToString();
                     Cli.Direccion = reader["DireccionCliente"].ToString();
                     Cli.Telefono = reader["TelefonoCliente"].ToString();
-                    switch (Convert.ToInt32(reader["TipoEnvio"]))
-                    {
-                        case 0:
-                            Cli.Tipo = TipoPedido.Delicado;
-                            break;
-                        case 1:
-                            Cli.Tipo = TipoPedido.Express;
-                            break;
-                        case 2:
-                            Cli.Tipo = TipoPedido.Ecologico;
-                            break;
-                    }
                     Cli.Cupon = Convert.ToBoolean(reader["Cupon"]);
                     Cli.Costo_total = Convert.ToDouble(reader["CostoTotal"]);
                 }
@@ -132,13 +119,11 @@ namespace tp6.Models
                 var conexion = new SQLiteConnection(cadena);
                 conexion.Open();
                 var command = conexion.CreateCommand();
-                command.CommandText = "UPDATE Clientes SET NombreCliente = @Nombre, DireccionCliente = @Direccion, TelefonoCliente = @Telefono, TipoEnvio = @Tipo, Cupon = @Cupon, CostoTotal = @CostoTotal WHERE idCliente = @ID";
+                command.CommandText = "UPDATE Clientes SET NombreCliente = @Nombre, DireccionCliente = @Direccion, TelefonoCliente = @Telefono, Cupon = @Cupon, CostoTotal = @CostoTotal WHERE idCliente = @ID";
                 command.Parameters.AddWithValue("@ID", Cli.Id);
                 command.Parameters.AddWithValue("@Nombre", Cli.Nombre);
                 command.Parameters.AddWithValue("@Direccion", Cli.Direccion);
                 command.Parameters.AddWithValue("@Telefono", Cli.Telefono);
-                int tipoenvio = Cli.NumeroEnvio();
-                command.Parameters.AddWithValue("@Tipo", tipoenvio);
                 command.Parameters.AddWithValue("@Cupon", Cli.Cupon);
                 command.Parameters.AddWithValue("@CostoTotal", Cli.Costo_total);
                 command.ExecuteNonQuery();

@@ -8,12 +8,18 @@
         EnCamino = 2,
         Entregado = 3
     }
-
+    public enum TipoPedido
+    {
+        Delicado = 0,
+        Express = 1,
+        Ecologico = 2
+    };
     public class Pedido
     {
         private int numpedido;
         private string obs;
         private EstadoPedido estado_actual;
+        private TipoPedido tipo;
         private Cliente nCliente;
         private Cadete cadete;
 
@@ -22,26 +28,17 @@
         public EstadoPedido Estado_actual { get => estado_actual; set => estado_actual = value; }
         public Cliente NCliente { get => nCliente; set => nCliente = value; }
         public Cadete Cadete { get => cadete; set => cadete = value; }
+        public TipoPedido Tipo { get => tipo; set => tipo = value; }
 
-        public void NuevoPedido(int _numpedido, string _obs, int _estado)
+        public Pedido()
+        {
+        }
+        public Pedido(int _numpedido, string _obs, int _estado, int _tipo)
         {
             Numpedido = _numpedido;
             Obs = _obs;
-            switch (_estado)
-            {
-                case 0:
-                    Estado_actual = EstadoPedido.Recibido;
-                    break;
-                case 1:
-                    Estado_actual = EstadoPedido.Preparado;
-                    break;
-                case 2:
-                    Estado_actual = EstadoPedido.EnCamino;
-                    break;
-                case 3:
-                    Estado_actual = EstadoPedido.Entregado;
-                    break;
-            }
+            Estado_actual = (EstadoPedido)_estado;
+            Tipo = (TipoPedido)_tipo;
         }
         public override string ToString()
         {
