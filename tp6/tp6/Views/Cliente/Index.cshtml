@@ -22,26 +22,26 @@
                     @{ foreach (var Cliente in Model)
                         {
                             <tr>
-                                <td class="align-middle">@Cliente.Id</td>
+                                <td class="align-middle">@Cliente.IdCliente</td>
                                 <td class="align-middle">@Cliente.Nombre</td>
                                 <td class="align-middle">@Cliente.Direccion</td>
                                 <td class="align-middle">@Cliente.Telefono</td>
                                 <td class="align-middle">@Cliente.Cupon</td>
                                 <td class="align-middle">
                                     <form asp-controller="Pedido" asp-action="Index" method="post" class="form-group">
-                                        <input type="hidden" name="id" value="@Cliente.Id" />
+                                        <input type="hidden" name="id" value="@Cliente.IdCliente" />
                                         <button type="submit" class="btn btn-outline-success waves-effect">➕</button>
                                     </form>
                                 </td>
                                 <td class="align-middle">
                                     <form asp-action="ModificarCliente" method="post" class="form-group">
-                                        <input type="hidden" name="_id" value="@Cliente.Id" />
+                                        <input type="hidden" name="_id" value="@Cliente.IdCliente" />
                                         <button type="submit" class="btn btn-outline-info waves-effect">✏️</button>
                                     </form>
                                 </td>
                                 <td class="align-middle">
                                     <form asp-action="BajaCliente" aps-method="post" class="form-group">
-                                        <input type="hidden" name="_id" value="@Cliente.Id" />
+                                        <input type="hidden" name="_id" value="@Cliente.IdCliente" />
                                         <button type="submit" class="btn btn-outline-danger waves-effect">🗑️</button>
                                     </form>
                                 </td>

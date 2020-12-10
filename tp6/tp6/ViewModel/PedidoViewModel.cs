@@ -14,6 +14,7 @@ namespace tp6.ViewModel
         public int IdCadete { get; set; }
         public Cadete CadeteCargado { get; set; }
         public string Observacion { get; set; }
+        public Cliente NCliente { get; set; }
         public List<Pedido> ListadoDePedidos { get; set; }
     }
 }

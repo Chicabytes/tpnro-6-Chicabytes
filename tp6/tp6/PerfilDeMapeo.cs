@@ -12,8 +12,11 @@ namespace tp6
         public PerfilDeMapeo()
         {
             CreateMap<Cadete, CadeteViewModel>().ReverseMap();
-            CreateMap<Cliente, ClienteViewModel>().ReverseMap();
-            CreateMap<Pedido, PedidoViewModel>();
+
+            CreateMap<Cliente, ClienteViewModel>().ForMember(
+                    dest => dest.Id, origen => origen.MapFrom(src => src.IdCliente)
+                ).ReverseMap();
+            CreateMap<Pedido, PedidoViewModel>().ReverseMap();
         }
     }
 }
