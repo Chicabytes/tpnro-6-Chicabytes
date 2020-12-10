@@ -15,19 +15,5 @@ namespace tp6.ViewModel
         public Cadete CadeteCargado { get; set; }
         public string Observacion { get; set; }
         public List<Pedido> ListadoDePedidos { get; set; }
-        public List<Cadete> InfoCadetes(TipoPedido PedidoCliente)
-        {
-            RepoCadetes repo = new RepoCadetes();
-            List<Cadete> LCadete = repo.Buscar(PedidoCliente);
-            CadeteViewModel Cadetes = new CadeteViewModel()
-            {
-                ListaCadetes = LCadete
-            };
-            return Cadetes.ListaCadetes;
-        }
     }
 }
-    //public class PedidoViewModel2
-    //{
-    //    public List<Pedido> ListadoDePedidos { get; set; }
-    //}

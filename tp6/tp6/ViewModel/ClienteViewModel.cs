@@ -5,13 +5,14 @@ using System.Threading.Tasks;
 
 namespace tp6.ViewModel
 {
-    public class CadeteViewModel
+    public class ClienteViewModel
     {
-        public TipoTransporte TipoT { get; set; }
-        public int Id { get; set; }
+        public int IdCliente { get; set; }
         public string Nombre { get; set; }
         public string Direccion { get; set; }
         public string Telefono { get; set; }
-        public List<Cadete> ListaCadetes { get; set; }
+        public bool Cupon { get; set; }
+        public int CostoTotal { get; set; }
+    
     }
 }

@@ -9,49 +9,34 @@ using System.Linq;
 using System.Threading.Tasks;
 using tp6.Models;
 using tp6.ViewModel;
+using AutoMapper;
 
 namespace tp6.Controllers
 {
     public class CadeteController : Controller
     {
         private readonly ILogger<CadeteController> _logger;
+        private readonly IMapper _mapper;
         
-        public CadeteController(ILogger<CadeteController> logger)
+        public CadeteController(ILogger<CadeteController> logger, IMapper mapper)
         {
             _logger = logger;
-            
+            _mapper = mapper;
         }
         public IActionResult Index()
         {
             RepoCadetes repo = new RepoCadetes();
-            CadeteViewModel cadVM = new CadeteViewModel()
-            {
-                ListaCadetes = repo.GetAll()
-            };
-            return View(cadVM);
+            List<Cadete> ListaCadetes = repo.GetAll();
+            List<CadeteViewModel> ListaVM = _mapper.Map<List<CadeteViewModel>>(ListaCadetes);
+            return View(ListaVM);
         }
         [HttpPost]
-        public IActionResult CargaCadete(string Nombre, string Direccion, string Telefono, int TipoT)
+        public IActionResult CargaCadete(CadeteViewModel _Cad)
         {
             try
             {
-                Cadete cad = new Cadete();
-                cad.Nombre = Nombre;
-                cad.Direccion = Direccion;
-                cad.Telefono = Telefono;
-                switch (TipoT)
-                {
-                    case 0:
-                        cad.TipoT = TipoTransporte.Auto;
-                        break;
-                    case 1:
-                        cad.TipoT = TipoTransporte.Moto;
-                        break;
-                    case 2:
-                        cad.TipoT = TipoTransporte.Bicicleta;
-                        break;
-                }
                 RepoCadetes repo = new RepoCadetes();
+                Cadete cad = _mapper.Map<Cadete>(_Cad);
                 repo.Alta(cad);
                 return Redirect("/Cadete/Index");
             }
@@ -62,7 +47,7 @@ namespace tp6.Controllers
         }
         public IActionResult AltaCadete()
         {
-            return View(new Cadete());
+            return View(new CadeteViewModel());
         }
         [HttpPost]
         public IActionResult BajaCadete(int _id)
@@ -82,13 +67,14 @@ namespace tp6.Controllers
         public IActionResult ModificarCadete(int _id)
         {
             RepoCadetes repo = new RepoCadetes();
-            Cadete cad = repo.Buscar(_id);
+            CadeteViewModel cad = _mapper.Map<CadeteViewModel>(repo.Buscar(_id));
             return View(cad);
         }
         [HttpPost]
-        public IActionResult Modificar(Cadete cad)
+        public IActionResult Modificar(CadeteViewModel _cad)
         {
             RepoCadetes repo = new RepoCadetes();
+            Cadete cad = _mapper.Map<Cadete>(_cad);
             repo.Modificar(cad);
             return Redirect("/Cadete/Index");
         }

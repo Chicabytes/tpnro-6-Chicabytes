@@ -10,8 +10,6 @@ namespace tp6
         private int id;
         private bool cupon;
         private double costo_total;
-        
-        //private List<Pedido> listaPedidos;
 
         public bool Cupon { get => cupon; set => cupon = value; }
         public double Costo_total { get => costo_total; set => costo_total = value; }
@@ -26,12 +24,7 @@ namespace tp6
 
         public Cliente(int _id, string _Nombre, string _Direccion, string _Telefono, bool _cupon, double _costo) : base(_Nombre, _Direccion, _Telefono)
         {
-            //this.listaPedidos = new List<Pedido>();
             Id = _id;
-            /*foreach (var _Pedido in _listaPedidos)
-            {
-                listaPedidos.Add(_Pedido);
-            }*/
             Cupon = _cupon;
             Costo_total = _costo;
         }

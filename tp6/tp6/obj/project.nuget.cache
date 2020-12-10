@@ -1,11 +1,18 @@
 {
   "version": 2,
-  "dgSpecHash": "DYU7yzIcm+8Oi6BBy/hKuiTQX94stps8D6htHjykOnSp39AiFCtUuiEaNozOf5P9ol9kb0wE/8IGD/Kz8qdLNg==",
+  "dgSpecHash": "3By++oltBaYZ+EQyDOTX9i3SFkwO8KF1UQqv8ZAYbrDMfo4IfXTvfjkQhyC1hDQmn2Ku83YOkUHle4Sq2HVRsQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\giuli\\Documents\\Facultad\\SEGUNDO AÑO\\Segundo Cuatrimestre\\Taller2\\Trabajos Practicos\\tpnro-6-Chicabytes\\tp6\\tp6\\tp6.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\giuli\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
+    "C:\\Users\\giuli\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\8.1.0\\automapper.extensions.microsoft.dependencyinjection.8.1.0.nupkg.sha512",
+    "C:\\Users\\giuli\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
+    "C:\\Users\\giuli\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\3.0.0\\microsoft.extensions.dependencyinjection.abstractions.3.0.0.nupkg.sha512",
+    "C:\\Users\\giuli\\.nuget\\packages\\microsoft.extensions.options\\3.0.0\\microsoft.extensions.options.3.0.0.nupkg.sha512",
+    "C:\\Users\\giuli\\.nuget\\packages\\microsoft.extensions.primitives\\3.0.0\\microsoft.extensions.primitives.3.0.0.nupkg.sha512",
     "C:\\Users\\giuli\\.nuget\\packages\\stub.system.data.sqlite.core.netstandard\\1.0.113.1\\stub.system.data.sqlite.core.netstandard.1.0.113.1.nupkg.sha512",
-    "C:\\Users\\giuli\\.nuget\\packages\\system.data.sqlite.core\\1.0.113.6\\system.data.sqlite.core.1.0.113.6.nupkg.sha512"
+    "C:\\Users\\giuli\\.nuget\\packages\\system.data.sqlite.core\\1.0.113.6\\system.data.sqlite.core.1.0.113.6.nupkg.sha512",
+    "C:\\Users\\giuli\\.nuget\\packages\\system.reflection.emit\\4.7.0\\system.reflection.emit.4.7.0.nupkg.sha512"
   ],
   "logs": []
 }

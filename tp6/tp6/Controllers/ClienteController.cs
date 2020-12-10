@@ -8,31 +8,36 @@ using System.Data.SQLite;
 using System.Linq;
 using System.Threading.Tasks;
 using tp6.Models;
+using AutoMapper;
+using tp6.ViewModel;
 
 namespace tp6.Controllers
 {
     public class ClienteController : Controller
     {
         private readonly ILogger<ClienteController> _logger;
+        private readonly IMapper _mapper;
 
-        public ClienteController(ILogger<ClienteController> logger)
+        public ClienteController(ILogger<ClienteController> logger, IMapper mapper)
         {
             _logger = logger;
+            _mapper = mapper;
         }
 
         public IActionResult Index()
         {
-            List<Cliente> NCliente;
             RepoClientes repo = new RepoClientes();
-            NCliente = repo.GetAll();
-            return View(NCliente);
+            List<Cliente> ListaClientes = repo.GetAll();
+            List<ClienteViewModel> ClientesVM = _mapper.Map<List<ClienteViewModel>>(ListaClientes);
+            return View(ClientesVM);
         }
         [HttpPost]
-        public IActionResult CargaCliente(Cliente Cli)
+        public IActionResult CargaCliente(ClienteViewModel _Cli)
         {
             try
             {
                 RepoClientes repo = new RepoClientes();
+                Cliente Cli = _mapper.Map<Cliente>(_Cli);
                 repo.Alta(Cli);
                 return Redirect("/Cliente/Index");
             }
@@ -43,7 +48,7 @@ namespace tp6.Controllers
         }
         public IActionResult AltaCliente()
         {
-            return View(new Cliente());
+            return View(new ClienteViewModel());
         }
         [HttpPost]
         public IActionResult BajaCliente(int _id)
@@ -67,9 +72,10 @@ namespace tp6.Controllers
             return View(Cli);
         }
         [HttpPost]
-        public IActionResult Modificar(Cliente Cli)
+        public IActionResult Modificar(ClienteViewModel _Cli)
         {
             RepoClientes repo = new RepoClientes();
+            Cliente Cli = _mapper.Map<Cliente>(_Cli);
             repo.Modificar(Cli);
             return Redirect("/Cliente/Index");
         }

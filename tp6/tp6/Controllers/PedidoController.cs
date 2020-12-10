@@ -9,16 +9,19 @@ using System.Linq;
 using System.Threading.Tasks;
 using tp6.Models;
 using tp6.ViewModel;
+using AutoMapper;
 
 namespace tp6.Controllers
 {
     public class PedidoController : Controller
     {
         private readonly ILogger<PedidoController> _logger;
+        private readonly IMapper _mapper;
 
-        public PedidoController(ILogger<PedidoController> logger)
+        public PedidoController(ILogger<PedidoController> logger, IMapper mapper)
         {
             _logger = logger;
+            _mapper = mapper;
         }
 
         public IActionResult Index(int id)
@@ -58,7 +61,6 @@ namespace tp6.Controllers
                     Id = pe.IdCliente
                 }
             };
-
             repo.Alta(Pedido, pe.IdCadete);
             return Redirect("/Pedido/Index?id=" + pe.IdCliente);
         }
@@ -71,7 +73,8 @@ namespace tp6.Controllers
         public IActionResult Modificar(PedidoViewModel pe)
         {
             RepoPedidos repo = new RepoPedidos();
-            repo.Modificacion(pe);
+            Pedido Pe = _mapper.Map<Pedido>(pe);
+            repo.Modificacion(Pe);
             return Redirect("/Pedido/Index?id=" + pe.IdCliente);
         }
         [HttpPost]

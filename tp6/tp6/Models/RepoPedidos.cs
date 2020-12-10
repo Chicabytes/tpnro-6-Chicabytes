@@ -96,22 +96,6 @@ namespace tp6.Models
                     ped.Cadete = new Cadete();
                     ped.Cadete.Nombre = reader["NombreCadete"].ToString();
 
-
-                    //switch (Convert.ToInt32(reader["EstadoPedido"]))
-                    //{
-                    //    case 0:
-                    //        ped.Estado_actual = EstadoPedido.Recibido;
-                    //        break;
-                    //    case 1:
-                    //        ped.Estado_actual = EstadoPedido.Preparado;
-                    //        break;
-                    //    case 2:
-                    //        ped.Estado_actual = EstadoPedido.EnCamino;
-                    //        break;
-                    //    case 3:
-                    //        ped.Estado_actual = EstadoPedido.Entregado;
-                    //        break;
-                    //}
                     NPedidos.Add(ped);
                 }
                 reader.Close();
@@ -167,7 +151,7 @@ namespace tp6.Models
             }
             
         }
-        public void Modificacion(PedidoViewModel pe)
+        public void Modificacion(Pedido pe)
         {
             try
             {
@@ -176,9 +160,9 @@ namespace tp6.Models
                 conexion.Open();
                 var command = conexion.CreateCommand();
                 command.CommandText = "UPDATE Pedidos SET Observacion = @Obs, EstadoPedido = @Estado WHERE idPedido = @ID";
-                command.Parameters.AddWithValue("@Obs", pe.Observacion);
+                command.Parameters.AddWithValue("@Obs", pe.Obs);
                 command.Parameters.AddWithValue("@Estado", pe.Estado_actual);
-                command.Parameters.AddWithValue("@ID", pe.IdPedido);
+                command.Parameters.AddWithValue("@ID", pe.Numpedido);
                 command.ExecuteNonQuery();
                 conexion.Close();
             }
@@ -237,80 +221,5 @@ namespace tp6.Models
                 return Cad;
             }
         }
-        /*
-        public Cadete Cad(int _idCliente)
-        {
-            Cadete Cad = new Cadete();
-            try
-            {
-                string cadena = "Data Source=" + Path.Combine(Directory.GetCurrentDirectory(), "Data\\tp6.db");
-                var conexion = new SQLiteConnection(cadena);
-                conexion.Open();
-                var command = conexion.CreateCommand();
-                command.CommandText = "Select * from Pedidos where idCliente = @id;";
-                command.Parameters.AddWithValue("@id", _idCliente);
-                SQLiteDataReader reader = command.ExecuteReader();
-                while (reader.Read())
-                {
-
-                    Cad.Id = Convert.ToInt32(reader["idCadete"]);
-
-                }
-                reader.Close();
-                command.CommandText = "Select * from Cadetes where idCadete = @id;";
-                command.Parameters.AddWithValue("@id", Cad.Id);
-                reader = command.ExecuteReader();
-                while (reader.Read())
-                {
-                    Cad.Nombre = reader["NombreCadete"].ToString();
-                    Cad.Direccion = reader["DireccionCadete"].ToString();
-                    Cad.Telefono = reader["TelefonoCadete"].ToString();
-                    switch (Convert.ToInt32(reader["TipoTransporte"]))
-                    {
-                        case 0:
-                            Cad.TipoT = TipoTransporte.Auto;
-                            break;
-                        case 1:
-                            Cad.TipoT = TipoTransporte.Moto;
-                            break;
-                        case 2:
-                            Cad.TipoT = TipoTransporte.Bicicleta;
-                            break;
-                    }
-                }
-                return Cad;
-            }
-            catch (Exception ex)
-            {
-                string excep = ex.ToString();
-                return Cad;
-            }
-        }
-        public int IDCad(int _idCliente)
-        {
-            int id = 0;
-            try
-            {
-                string cadena = "Data Source=" + Path.Combine(Directory.GetCurrentDirectory(), "Data\\tp6.db");
-                var conexion = new SQLiteConnection(cadena);
-                conexion.Open();
-                var command = conexion.CreateCommand();
-                command.CommandText = "Select * from Pedidos where idCliente = @id;";
-                command.Parameters.AddWithValue("@id", _idCliente);
-                SQLiteDataReader reader = command.ExecuteReader();
-                while (reader.Read())
-                {
-
-                    id = Convert.ToInt32(reader["idCadete"]);
-
-                }
-                return id;
-            }
-            catch (Exception ex)
-            {
-                string excep = ex.ToString();
-                return id;
-            }
-        }*/
     }
 }
