@@ -8,7 +8,6 @@
     <div class="card-body mx-4 mt-4">
         <form class="text-center" style="color: #757575;" asp-action="Modificar" method="post">
             <input type="hidden" value="@Model.IdPedido" asp-for="IdPedido" />
-            <input type="hidden" value="@Model.IdCliente" asp-for="IdCliente" />
             <div class="md-form">
                 <textarea asp-for="@Model.Observacion" class="form-control z-depth-1" id="Textarea6" rows="3" placeholder="Ingrese su observacion..."></textarea>
             </div>
@@ -16,10 +15,13 @@
                 <select asp-for="TPedido" value="@Model.TPedido">
                     <option value="0">Delicado</option>
                     <option value="1">Express</option>
-                    <option value="2">Ecologico</option>>
+                    <option value="2">Ecologico</option>
                 </select>
             </div>
             <button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0" type="submit">Enviar</button>
+        </form>
+        <form asp-action="AltaPedido" class="form-group">
+            <button type="submit" class="btn btn-outline-info waves-effect">Enviar</button>
         </form>
     </div>
 </div>

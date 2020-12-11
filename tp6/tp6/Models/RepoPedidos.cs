@@ -10,40 +10,6 @@ namespace tp6.Models
 {
     public class RepoPedidos
     { 
-
-
-        public List<Pedido> GetAll(int _id)
-        {
-            List<Pedido> NPedidos = new List<Pedido>();
-            PedidoViewModel PedidoVM = new PedidoViewModel();
-            try
-            {
-                string cadena = "Data Source=" + Path.Combine(Directory.GetCurrentDirectory(), "Data\\tp6.db");
-                var conexion = new SQLiteConnection(cadena);
-                conexion.Open();
-                var command = conexion.CreateCommand();
-                command.CommandText = "Select * from Pedidos where idCliente = @id;";
-                command.Parameters.AddWithValue("@id", _id);
-                SQLiteDataReader reader = command.ExecuteReader();
-                while (reader.Read())
-                {
-                    var ped = new Pedido();
-                    ped.Numpedido = Convert.ToInt32(reader["idPedido"]);
-                    ped.Obs = reader["Observacion"].ToString();
-                    ped.Estado_actual = (EstadoPedido)Convert.ToInt32(reader["EstadoPedido"]);
-                    ped.Tipo = (TipoPedido)Convert.ToInt32(reader["TipoEnvio"]);
-                    NPedidos.Add(ped);
-                }
-                reader.Close();
-                return NPedidos;
-            }
-            catch (Exception ex)
-            {
-                string excep = ex.ToString();
-                return NPedidos;
-            }
-        }
-
         public List<Pedido> GetAll(EstadoPedido estado = EstadoPedido.Todos)
         {
             List<Pedido> NPedidos = new List<Pedido>();
@@ -85,10 +51,8 @@ namespace tp6.Models
                 {
                     var ped = new Pedido();
                     ped.Numpedido = Convert.ToInt32(reader["idPedido"]);
-
-                    ped.Numpedido = Convert.ToInt32(reader["idPedido"]); 
                     ped.Obs = reader["Observacion"].ToString();
-                    ped.Estado_actual = (EstadoPedido)(Convert.ToInt32(reader["EstadoPedido"])) ;
+                    ped.Estado_actual = (EstadoPedido)(Convert.ToInt32(reader["EstadoPedido"]));
                     
                     ped.NCliente = new Cliente();
                     ped.NCliente.Nombre = reader["NombreCliente"].ToString();
@@ -109,7 +73,7 @@ namespace tp6.Models
             }
         }
 
-        public void Alta(Pedido _pe, int _idCad)
+        public void Alta(Pedido _pe)
         {
             try
             {
@@ -117,12 +81,11 @@ namespace tp6.Models
                 var conexion = new SQLiteConnection(cadena);
                 conexion.Open();
                 var command = conexion.CreateCommand();
-                command.CommandText = "Insert Into Pedidos(Observacion, TipoEnvio, EstadoPedido, idCliente, idCadete) values (@Obs, @TipoEnvio, @Estado, @idCli, @idCad)";
+                command.CommandText = "Insert Into Pedidos(Observacion, TipoEnvio, EstadoPedido, idCliente) values (@Obs, @TipoEnvio, @Estado, @idCli)";
                 command.Parameters.AddWithValue("@Obs", _pe.Obs);
                 command.Parameters.AddWithValue("@Estado", _pe.Estado_actual);
                 command.Parameters.AddWithValue("@TipoEnvio", _pe.Tipo);
                 command.Parameters.AddWithValue("@idCli", _pe.NCliente.Id);
-                command.Parameters.AddWithValue("@idCad", _idCad);
                 command.ExecuteNonQuery();
                 conexion.Close();
             }

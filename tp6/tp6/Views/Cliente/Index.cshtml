@@ -13,7 +13,6 @@
                         <th class="th-sm">Direccion</th>
                         <th class="th-sm">Telefono</th>
                         <th class="th-sm">Cupon</th>
-                        <th class="th-sm">Lista de Pedidos</th>
                         <th class="th-sm">Modificar</th>
                         <th class="th-sm">Eliminar</th>
                     </tr>
@@ -27,12 +26,6 @@
                                 <td class="align-middle">@Cliente.Direccion</td>
                                 <td class="align-middle">@Cliente.Telefono</td>
                                 <td class="align-middle">@Cliente.Cupon</td>
-                                <td class="align-middle">
-                                    <form asp-controller="Pedido" asp-action="Index" method="post" class="form-group">
-                                        <input type="hidden" name="id" value="@Cliente.IdCliente" />
-                                        <button type="submit" class="btn btn-outline-success waves-effect">➕</button>
-                                    </form>
-                                </td>
                                 <td class="align-middle">
                                     <form asp-action="ModificarCliente" method="post" class="form-group">
                                         <input type="hidden" name="_id" value="@Cliente.IdCliente" />
