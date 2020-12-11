@@ -13,10 +13,15 @@ namespace tp6
         {
             CreateMap<Cadete, CadeteViewModel>().ReverseMap();
 
-            CreateMap<Cliente, ClienteViewModel>().ForMember(
+            CreateMap<Cliente, ClienteViewModel>().ForMember
+                (
                     dest => dest.IdCliente, origen => origen.MapFrom(src => src.Id)
                 ).ReverseMap();
-            CreateMap<Pedido, PedidoViewModel>().ReverseMap();
+            CreateMap<PedidoViewModel, Cliente>();
+            CreateMap<PedidoViewModel, Pedido>().ForMember
+                (
+                    dest => dest.NCliente, origen =>origen.MapFrom(src => src.NCliente)
+                ).ReverseMap();
         }
     }
 }

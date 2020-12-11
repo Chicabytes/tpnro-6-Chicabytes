@@ -28,7 +28,7 @@ namespace tp6.Models
                                         NombreCadete,
                                         EstadoPedido
                                         From Pedidos
-                                        Inner Join Cadetes using (IdCadete)
+                                        Left Join Cadetes using (IdCadete)
                                         Inner Join Clientes using (IdCliente);";
                 }
                 else
@@ -40,7 +40,7 @@ namespace tp6.Models
                                         NombreCadete,
                                         EstadoPedido
                                         From Pedidos
-                                        Inner Join Cadetes using (IdCadete)
+                                        Left Join Cadetes using (IdCadete)
                                         Inner Join Clientes using (IdCliente);";
                     command.Parameters.AddWithValue("@EstadoPedido", estado);
                 }

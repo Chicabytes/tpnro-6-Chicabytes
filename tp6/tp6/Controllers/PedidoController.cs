@@ -45,8 +45,10 @@ namespace tp6.Controllers
         }
         public IActionResult CargaPedido(PedidoViewModel pe)
         {
+            Pedido Pedido = new Pedido();
+            Pedido.NCliente = new Cliente();
             RepoPedidos repo = new RepoPedidos();
-            Pedido Pedido = _mapper.Map<Pedido>(pe);
+            Pedido = _mapper.Map<Pedido>(pe);
             repo.Alta(Pedido);
             return Redirect("/Pedido/Index?id=" + pe.IdCliente);
         }

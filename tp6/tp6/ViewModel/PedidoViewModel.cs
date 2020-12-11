@@ -15,6 +15,7 @@ namespace tp6.ViewModel
         //public Cadete NCadete { get; set; }
         public string Observacion { get; set; }
         public Cliente NCliente { get; set; }
+        public Cadete NCadete { get; set; }
         public List<Pedido> ListadoDePedidos { get; set; }
         public List<CadeteViewModel> LCadetesVM { get; set; }
         public List<ClienteViewModel> LClientesVM { get; set; }

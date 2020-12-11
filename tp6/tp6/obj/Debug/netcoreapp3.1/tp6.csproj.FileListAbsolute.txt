@@ -152,4 +152,3 @@ C:\Repositorios Git\tmp\choco\tp6\tp6\obj\Debug\netcoreapp3.1\Razor\Views\Pedido
 C:\Users\giuli\Documents\Facultad\SEGUNDO AÑO\Segundo Cuatrimestre\Taller2\Trabajos Practicos\tpnro-6-Chicabytes\tp6\tp6\bin\Debug\netcoreapp3.1\AutoMapper.dll
 C:\Users\giuli\Documents\Facultad\SEGUNDO AÑO\Segundo Cuatrimestre\Taller2\Trabajos Practicos\tpnro-6-Chicabytes\tp6\tp6\bin\Debug\netcoreapp3.1\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
 C:\Users\giuli\Documents\Facultad\SEGUNDO AÑO\Segundo Cuatrimestre\Taller2\Trabajos Practicos\tpnro-6-Chicabytes\tp6\tp6\obj\Debug\netcoreapp3.1\Razor\Views\Pedido\AltaPedido.cshtml.g.cs
-C:\Users\giuli\Documents\Facultad\SEGUNDO AÑO\Segundo Cuatrimestre\Taller2\Trabajos Practicos\tpnro-6-Chicabytes\tp6\tp6\obj\Debug\netcoreapp3.1\Razor\Views\Pedido\Index1.cshtml.g.cs
