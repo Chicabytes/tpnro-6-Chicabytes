@@ -22,55 +22,89 @@ namespace tp6.Controllers
 
         public IActionResult Index()
         {
-            RepoPedidos repo = new RepoPedidos();
-            PedidoViewModel Pedidos = new PedidoViewModel()
+            try 
+            { 
+                RepoPedidos repo = new RepoPedidos();
+                PedidoViewModel Pedidos = new PedidoViewModel()
+                {
+                    ListadoDePedidos = repo.GetAll()
+                };
+                return View(Pedidos);
+            }
+            catch (System.Exception ex)
             {
-                ListadoDePedidos = repo.GetAll()
-            };
-            return View(Pedidos);
+                return Content(ex.Message);
+            }
         }
         [HttpPost]
         public IActionResult AltaPedido()
         {
-            RepoPedidos repo = new RepoPedidos();
-            RepoCadetes repoCad = new RepoCadetes();
-            RepoClientes repoCli = new RepoClientes();
-            PedidoViewModel Pedido = new PedidoViewModel()
+            try
             {
-                ListadoDePedidos = repo.GetAll(),
-                LCadetesVM = _mapper.Map<List<CadeteViewModel>>(repoCad.GetAll()),
-                LClientesVM = _mapper.Map<List<ClienteViewModel>>(repoCli.GetAll())
-            };
-            return View(Pedido);
+                RepoPedidos repo = new RepoPedidos();
+                RepoCadetes repoCad = new RepoCadetes();
+                RepoClientes repoCli = new RepoClientes();
+                PedidoViewModel Pedido = new PedidoViewModel()
+                {
+                    ListadoDePedidos = repo.GetAll(),
+                    LCadetesVM = _mapper.Map<List<CadeteViewModel>>(repoCad.GetAll()),
+                    LClientesVM = _mapper.Map<List<ClienteViewModel>>(repoCli.GetAll())
+                };
+                return View(Pedido);
+            }
+            catch (System.Exception ex)
+            {
+                return Content(ex.Message);
+            }
         }
         public IActionResult CargaPedido(PedidoViewModel pe)
         {
-            Pedido Pedido = new Pedido();
-            Pedido.NCliente = new Cliente();
-            RepoPedidos repo = new RepoPedidos();
-            Pedido = _mapper.Map<Pedido>(pe);
-            repo.Alta(Pedido);
-            return Redirect("/Pedido/Index?id=" + pe.IdCliente);
+            try
+            {
+                RepoPedidos repo = new RepoPedidos();
+                Pedido Pedido = new Pedido();
+                Pedido = _mapper.Map<Pedido>(pe);
+                repo.Alta(Pedido);
+                return Redirect("/Pedido/Index");
+            }
+            catch (System.Exception ex)
+            {
+                return Content(ex.Message);
+            }
         }
         [HttpPost]
         public IActionResult ModificarPedido(int _idPedido)
         {
-            return View(new PedidoViewModel { IdPedido = _idPedido});
+            return View(new AltaPedidoViewModel { NumeroDePedido = _idPedido});
         }
         [HttpPost]
-        public IActionResult Modificar(PedidoViewModel pe)
+        public IActionResult Modificar(AltaPedidoViewModel pe)
         {
-            RepoPedidos repo = new RepoPedidos();
-            Pedido Pe = _mapper.Map<Pedido>(pe);
-            repo.Modificacion(Pe);
-            return Redirect("/Pedido/Index?id=" + pe.IdCliente);
+            try
+            { 
+                RepoPedidos repo = new RepoPedidos();
+                Pedido Pe = _mapper.Map<Pedido>(pe);
+                repo.Modificacion(Pe);
+                return Redirect("/Pedido/Index");
+            }
+            catch (System.Exception ex)
+            {
+                return Content(ex.Message);
+            }
         }
         [HttpPost]
-        public IActionResult BajaPedido(int idPed, int idCli)
+        public IActionResult BajaPedido(int idPed)
         {
-            RepoPedidos repo = new RepoPedidos();
-            repo.Baja(idPed);
-            return Redirect("/Pedido/Index?id=" + idCli);
+            try
+            { 
+                RepoPedidos repo = new RepoPedidos();
+                repo.Baja(idPed);
+                return Redirect("/Pedido/Index");
+            }
+            catch (System.Exception ex)
+            {
+                return Content(ex.Message);
+            }
         }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

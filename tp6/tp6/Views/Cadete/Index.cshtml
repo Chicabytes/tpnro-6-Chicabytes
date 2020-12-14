@@ -14,6 +14,7 @@
                 <th class="th-sm">Direccion</th>
                 <th class="th-sm">Telefono</th>
                 <th class="th-sm">Vehiculo</th>
+                <th class="th-sm">Pedidos</th>
                 <th class="th-sm">Modificar</th>
                 <th class="th-sm">Eliminar</th>
             </tr>
@@ -27,6 +28,13 @@
                             <td>@Cadete.Direccion</td>
                             <td>@Cadete.Telefono</td>
                             <td>@Cadete.TipoT</td>
+                            <td>
+                                <form asp-action="GestionDePedidos" method="post" class="form-group">
+                                    <input type="hidden" name="idCadete" value="@Cadete.Id" />
+                                    <input type="hidden" name="Tipo" value="@Cadete.TipoT" />
+                                    <button type="submit" class="btn btn-outline-secondary waves-effect">Gestionar Pedidos</button>
+                                </form>
+                            </td>
                             <td>
                                 <form asp-action="ModificarCadete" method="post" class="form-group">
                                     <input type="hidden" name="_id" value="@Cadete.Id" />

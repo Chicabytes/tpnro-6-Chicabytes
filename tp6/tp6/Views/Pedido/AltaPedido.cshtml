@@ -13,7 +13,8 @@
             <br>
             <div class="card-body px-lg-5 pt-0">
                 <label>Seleccione el cliente: </label>
-                <select asp-for="IdCliente">
+                @{Model.NCliente = new Cliente(); }
+                <select asp-for="NCliente.Id">
                     @foreach (var Cliente in Model.LClientesVM)
                     {
                         <option value="@Cliente.IdCliente" >@Cliente.Nombre</option>
@@ -21,17 +22,8 @@
                 </select>
             </div>
             <div class="card-body px-lg-5 pt-0">
-                <label>Seleccione el Cadete: </label>
-                <select asp-for="NCadete">
-                    @foreach (var Cadete in Model.LCadetesVM)
-                    {
-                        <option value="@Cadete">@Cadete.Nombre | @Cadete.TipoT</option>
-                    }
-                </select>
-            </div>
-            <div class="card-body px-lg-5 pt-0">
                 <div class="md-form">
-                    <textarea asp-for="@Model.Observacion" class="form-control z-depth-1" id="Textarea6" rows="3" placeholder="Ingrese su observacion..."></textarea>
+                    <textarea asp-for="Observacion" class="form-control z-depth-1" id="Textarea6" rows="3" placeholder="Ingrese su observacion..."></textarea>
                 </div>
                 <div class="md-form">
                     <select asp-for="TPedido">

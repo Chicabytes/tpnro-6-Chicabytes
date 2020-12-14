@@ -78,7 +78,69 @@ namespace tp6.Controllers
             repo.Modificar(cad);
             return Redirect("/Cadete/Index");
         }
+        [HttpPost]
+        public IActionResult GestionDePedidos(int idCadete, TipoTransporte tipo)
+        {
+            CadetesYPedidosViewModel Cadetes = new CadetesYPedidosViewModel();
+            {
+                Cadetes.IdCadete = idCadete;
+                switch (tipo)
+                {
+                    case TipoTransporte.Auto:
+                        Cadetes.TipoPed = TipoPedido.Delicado;
+                        break;
+                    case TipoTransporte.Moto:
+                        Cadetes.TipoPed = TipoPedido.Express;
+                        break;
+                    case TipoTransporte.Bicicleta:
+                        Cadetes.TipoPed = TipoPedido.Ecologico;
+                        break;
+                }
+            }
+            return View(Cadetes);
+        }
+        [HttpPost]
+        public IActionResult MisPedidos(int idCadete, TipoPedido TipoP)
+        {
+            CadetesYPedidosViewModel CadetesYPedidosVM = new CadetesYPedidosViewModel();
+            RepoPedidos repo = new RepoPedidos();
+            CadetesYPedidosVM.ListaPedidos = repo.GetAll(TipoP, idCadete);
+            return View(CadetesYPedidosVM);
+        }
+        [HttpPost]
+        public IActionResult ListaDePedidos(int idCadete, TipoPedido TipoP)
+        {
+            RepoPedidos repo = new RepoPedidos();
+            CadetesYPedidosViewModel CadetesYPedidosVM = new CadetesYPedidosViewModel() 
+            {
+                ListaPedidos = repo.GetAll(TipoP),
+                IdCadete = idCadete
+            };
+            return View(CadetesYPedidosVM);
+        }
+        public IActionResult ModificarEstado(int idCadete, int idPedido, EstadoPedido estado)
+        {
+            CadetesYPedidosViewModel CyPedidoVM = new CadetesYPedidosViewModel()
+            {
+                Estado = estado,
+                IdPedido = idPedido,
+                IdCadete = idCadete
+            };
+            return View(CyPedidoVM);
+        }
 
+        public IActionResult NuevoEstado(CadetesYPedidosViewModel CadyPed)
+        {
+            RepoPedidos repo = new RepoPedidos();
+            repo.ModificarEstado(CadyPed.IdPedido, CadyPed.Estado);
+            return Redirect("/Cadete/");
+        }
+        public IActionResult AgregarPedido(int idPedido, int idCadete)
+        {
+            RepoPedidos repo = new RepoPedidos();
+            repo.AgregarCadete(idPedido, idCadete);
+            return Redirect("/Cadete/");
+        }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

@@ -18,10 +18,25 @@ namespace tp6
                     dest => dest.IdCliente, origen => origen.MapFrom(src => src.Id)
                 ).ReverseMap();
             CreateMap<PedidoViewModel, Cliente>();
+            CreateMap<Pedido, Cliente>();
             CreateMap<PedidoViewModel, Pedido>().ForMember
                 (
                     dest => dest.NCliente, origen =>origen.MapFrom(src => src.NCliente)
-                ).ReverseMap();
+                );
+            CreateMap<Pedido, PedidoViewModel>().ForMember
+                (
+                    dest => dest.NCliente, origen => origen.MapFrom(src => src.NCliente)
+                );
+            CreateMap<Pedido, AltaPedidoViewModel>().ReverseMap().ForMember
+                (
+                    dest => dest.Numpedido, origen => origen.MapFrom(src => src.NumeroDePedido)
+                ).ForMember
+                (
+                    dest => dest.Obs, origen => origen.MapFrom(src => src.Observacion)
+                ).ForMember
+                (
+                    dest => dest.Tipo, origen => origen.MapFrom(src => src.TPedido)
+                ); ;
         }
     }
 }

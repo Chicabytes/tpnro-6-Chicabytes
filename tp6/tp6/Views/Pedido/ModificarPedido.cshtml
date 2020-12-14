@@ -1,4 +1,4 @@
-﻿@model tp6.ViewModel.PedidoViewModel
+﻿@model tp6.ViewModel.AltaPedidoViewModel
 <div class="card">
     <div class="header pt-3 blue-gradient">
         <div class="row d-flex justify-content-center">
@@ -7,12 +7,12 @@
     </div>
     <div class="card-body mx-4 mt-4">
         <form class="text-center" style="color: #757575;" asp-action="Modificar" method="post">
-            <input type="hidden" value="@Model.IdPedido" asp-for="IdPedido" />
+            <input type="hidden" value="@Model.NumeroDePedido" asp-for="NumeroDePedido" />
             <div class="md-form">
-                <textarea asp-for="@Model.Observacion" class="form-control z-depth-1" id="Textarea6" rows="3" placeholder="Ingrese su observacion..."></textarea>
+                <textarea asp-for="Observacion" class="form-control z-depth-1" id="Textarea6" rows="3" placeholder="Ingrese su observacion..."></textarea>
             </div>
             <div class="md-form">
-                <select asp-for="TPedido" value="@Model.TPedido">
+                <select asp-for="TPedido">
                     <option value="0">Delicado</option>
                     <option value="1">Express</option>
                     <option value="2">Ecologico</option>
