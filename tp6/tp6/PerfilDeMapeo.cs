@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using tp6.Addon;
 using tp6.ViewModel;
 
 namespace tp6
@@ -36,7 +37,11 @@ namespace tp6
                 ).ForMember
                 (
                     dest => dest.Tipo, origen => origen.MapFrom(src => src.TPedido)
-                ); ;
+                );
+            CreateMap<User, UserViewModel>().ForMember
+                (
+                    dest => dest.Id, origen => origen.MapFrom(src => src.Id)
+                ).ReverseMap();
         }
     }
 }

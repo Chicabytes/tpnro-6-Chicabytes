@@ -9,7 +9,7 @@ using tp6.ViewModel;
 
 namespace tp6.Controllers
 {
-    public class PedidoController : Controller
+    public class PedidoController : BaseController
     {
         private readonly ILogger<PedidoController> _logger;
         private readonly IMapper _mapper;

@@ -52,6 +52,10 @@
               "target": "Package",
               "version": "[8.1.0, )"
             },
+            "Microsoft.AspNetCore.Session": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
             "System.Data.SQLite.Core": {
               "target": "Package",
               "version": "[1.0.113.6, )"

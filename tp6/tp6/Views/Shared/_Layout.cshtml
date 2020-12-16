@@ -22,7 +22,7 @@
 <body>
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark primary-color">
-            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Choco's Delivery</a>
+            <a class="navbar-brand" asp-area="" asp-controller="User" asp-action="Index">Choco's Delivery</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -30,7 +30,7 @@
             <div class="collapse navbar-collapse">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="Index">Inicio</a>
                     </li>
                     <li class="nav-item ">
                         <a class="nav-link text-dark" asp-area="" asp-controller="Cadete" asp-action="Index">Cadetes</a>
@@ -44,6 +44,7 @@
                 </ul>
             </div>
         </nav>
+
     </header>
     <br />
     <div class="container">
@@ -53,34 +54,29 @@
     </div>
 
     <!-- Footer -->
-    <footer class="page-footer font-small" style="position: absolute;
-        width: 100%;
-        background-color: #4285f4 !important;">
+    <footer class="page-footer font-small fixed-bottom" style="
+            width: 100%;
+            background-color: #4285f4 !important;
+        ">
+
         <!-- Copyright -->
         <div class="footer-copyright text-center py-3">
             © 2020 Copyright: &copy; 2020 - Choco's Delivery - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
         <!-- Copyright -->
-
     </footer>
-    <!-- Footer -->
-    <!--<footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2020 - Choco's Delivery - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>-->
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @RenderSection("Scripts", required: false)
     <!-- jQuery -->
-    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="~/js/jquery.min.js"></script>
     <!-- Bootstrap tooltips -->
-    <script type="text/javascript" src="js/popper.min.js"></script>
+    <script type="text/javascript" src="~/js/popper.min.js"></script>
     <!-- Bootstrap core JavaScript -->
-    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/js/bootstrap.min.js"></script>
     <!-- MDB core JavaScript -->
-    <script type="text/javascript" src="js/mdb.min.js"></script>
+    <script type="text/javascript" src="~/js/mdb.min.js"></script>
     <!-- Your custom scripts (optional) -->
     <script type="text/javascript"></script>
 </body>

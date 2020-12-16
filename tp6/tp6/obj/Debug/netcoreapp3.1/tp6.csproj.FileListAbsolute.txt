@@ -21,7 +21,6 @@ C:\Users\giuli\Documents\Facultad\SEGUNDO AÑO\Segundo Cuatrimestre\Taller2\Trab
 C:\Users\giuli\Documents\Facultad\SEGUNDO AÑO\Segundo Cuatrimestre\Taller2\Trabajos Practicos\tpnro-6-Chicabytes\tp6\tp6\obj\Debug\netcoreapp3.1\tp6.TagHelpers.input.cache
 C:\Users\giuli\Documents\Facultad\SEGUNDO AÑO\Segundo Cuatrimestre\Taller2\Trabajos Practicos\tpnro-6-Chicabytes\tp6\tp6\obj\Debug\netcoreapp3.1\tp6.TagHelpers.output.cache
 C:\Users\giuli\Documents\Facultad\SEGUNDO AÑO\Segundo Cuatrimestre\Taller2\Trabajos Practicos\tpnro-6-Chicabytes\tp6\tp6\obj\Debug\netcoreapp3.1\tp6.RazorCoreGenerate.cache
-C:\Users\giuli\Documents\Facultad\SEGUNDO AÑO\Segundo Cuatrimestre\Taller2\Trabajos Practicos\tpnro-6-Chicabytes\tp6\tp6\obj\Debug\netcoreapp3.1\Razor\Views\Home\Index.cshtml.g.cs
 C:\Users\giuli\Documents\Facultad\SEGUNDO AÑO\Segundo Cuatrimestre\Taller2\Trabajos Practicos\tpnro-6-Chicabytes\tp6\tp6\obj\Debug\netcoreapp3.1\Razor\Views\Home\Privacy.cshtml.g.cs
 C:\Users\giuli\Documents\Facultad\SEGUNDO AÑO\Segundo Cuatrimestre\Taller2\Trabajos Practicos\tpnro-6-Chicabytes\tp6\tp6\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Error.cshtml.g.cs
 C:\Users\giuli\Documents\Facultad\SEGUNDO AÑO\Segundo Cuatrimestre\Taller2\Trabajos Practicos\tpnro-6-Chicabytes\tp6\tp6\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Layout.cshtml.g.cs
@@ -156,3 +155,6 @@ C:\Users\giuli\Documents\Facultad\SEGUNDO AÑO\Segundo Cuatrimestre\Taller2\Trab
 C:\Users\giuli\Documents\Facultad\SEGUNDO AÑO\Segundo Cuatrimestre\Taller2\Trabajos Practicos\tpnro-6-Chicabytes\tp6\tp6\obj\Debug\netcoreapp3.1\Razor\Views\Cadete\ListaDePedidos.cshtml.g.cs
 C:\Users\giuli\Documents\Facultad\SEGUNDO AÑO\Segundo Cuatrimestre\Taller2\Trabajos Practicos\tpnro-6-Chicabytes\tp6\tp6\obj\Debug\netcoreapp3.1\Razor\Views\Cadete\MisPedidos.cshtml.g.cs
 C:\Users\giuli\Documents\Facultad\SEGUNDO AÑO\Segundo Cuatrimestre\Taller2\Trabajos Practicos\tpnro-6-Chicabytes\tp6\tp6\obj\Debug\netcoreapp3.1\Razor\Views\Cadete\ModificarEstado.cshtml.g.cs
+C:\Users\giuli\Documents\Facultad\SEGUNDO AÑO\Segundo Cuatrimestre\Taller2\Trabajos Practicos\tpnro-6-Chicabytes\tp6\tp6\obj\Debug\netcoreapp3.1\Razor\Views\User\AltaUser.cshtml.g.cs
+C:\Users\giuli\Documents\Facultad\SEGUNDO AÑO\Segundo Cuatrimestre\Taller2\Trabajos Practicos\tpnro-6-Chicabytes\tp6\tp6\obj\Debug\netcoreapp3.1\Razor\Views\User\Index.cshtml.g.cs
+C:\Users\giuli\Documents\Facultad\SEGUNDO AÑO\Segundo Cuatrimestre\Taller2\Trabajos Practicos\tpnro-6-Chicabytes\tp6\tp6\obj\Debug\netcoreapp3.1\Razor\Views\Home\Index.cshtml.g.cs

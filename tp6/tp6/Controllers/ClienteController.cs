@@ -6,10 +6,11 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using tp6.Models;
 using tp6.ViewModel;
+using tp6.Addon;
 
 namespace tp6.Controllers
 {
-	public class ClienteController : Controller
+	public class ClienteController : BaseController
 	{
 		private readonly ILogger<ClienteController> _logger;
 		private readonly IMapper _mapper;
@@ -22,10 +23,18 @@ namespace tp6.Controllers
 
 		public IActionResult Index()
 		{
-			RepoClientes repo = new RepoClientes();
-			List<Cliente> ListaClientes = repo.GetAll();
-			List<ClienteViewModel> ClientesVM = _mapper.Map<List<ClienteViewModel>>(ListaClientes);
-			return View(ClientesVM);
+
+			if (IsSesionIniciada() && GetRol() == 0)
+			{
+				RepoClientes repo = new RepoClientes();
+				List<Cliente> ListaClientes = repo.GetAll();
+				List<ClienteViewModel> ClientesVM = _mapper.Map<List<ClienteViewModel>>(ListaClientes);
+				return View(ClientesVM);
+			}
+			else
+			{
+				return Redirect("../Home/Index");
+			}
 		}
 		[HttpPost]
 		public IActionResult CargaCliente(ClienteViewModel _Cli)

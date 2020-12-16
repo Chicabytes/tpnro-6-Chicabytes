@@ -1,8 +1,21 @@
-﻿@{
-    ViewData["Title"] = "Inicio";
-}
+﻿<form asp-controller="User" asp-action="Index"><input type="submit" class="btn purple-gradient" value="Iniciar Sesion"></form>
+@{ if (ViewBag.UserLogueado == 0)
+    {
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+        <form asp-controller="Pedido" asp-action="Index"><input type="submit" class="btn peach-gradient" value="Pedidos"></form>
+        <form asp-controller="Cadete" asp-action="Index"><input type="submit" class="btn blue-gradient" value="Cadetes"></form>
+        <form asp-controller="Cliente" asp-action="Index"><input type="submit" class="btn aqua-gradient" value="Clientes"></form>
+        <form asp-controller="User" asp-action="Desloguearse"><input type="submit" class="btn purple-gradient-rgba" value="Cerrar Sesion"></form>
+    }
+    else if (ViewBag.UserLogueado == 1)
+    {
+        <form asp-controller="Pedido" asp-action="Index"><input type="submit" class="btn peach-gradient" value="Pedidos"></form>
+        <form asp-controller="Cadete" asp-action="Index"><input type="submit" class="btn blue-gradient" value="Cadetes"></form>
+        <form asp-controller="User" asp-action="Desloguearse"><input type="submit" class="btn purple-gradient-rgba" value="Cerrar Sesion"></form>
+    }
+    else
+    {
+        <form asp-controller="Cliente" asp-action="Index"><input type="submit" class="btn aqua-gradient" value="Clientes"></form>
+        <form asp-controller="User" asp-action="Desloguearse"><input type="submit" class="btn purple-gradient-rgba" value="Cerrar Sesion"></form>
+    }
+}
