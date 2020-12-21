@@ -13,11 +13,12 @@ namespace tp6.Controllers
     {
         internal void SetSesion(User usuarioLogueado)
         {
-            if (IsSesionIniciada())
+            if (!IsSesionIniciada())
             {
                 if (usuarioLogueado != null)
                 {
                     HttpContext.Session.SetString("Usuario", usuarioLogueado.Usuario);
+                    HttpContext.Session.SetString("Contrasena", usuarioLogueado.Contrasena);
                     HttpContext.Session.SetInt32("idUsuario", (int)usuarioLogueado.Id);
                     HttpContext.Session.SetInt32("Rol", (int)usuarioLogueado.Rol);
                 }
@@ -31,14 +32,25 @@ namespace tp6.Controllers
 
         internal int GetRol()
         {
-            int rol = (int)HttpContext.Session.GetInt32("Rol");
+            int rol = 0;
+            if (IsSesionIniciada())
+            {
+                rol = (int)HttpContext.Session.GetInt32("Rol");
+            }
+            else
+            {
+                rol = -1;
+            }
             return rol;
         }
-        internal string GetNombre()
+        internal string GetUser()
         {
             return HttpContext.Session.GetString("Usuario");
         }
-
+        protected string GetPass()
+        {
+            return HttpContext.Session.GetString("Contrasena");
+        }
         internal int GetIdUsuario()
         {
             int idUsuario = (int)HttpContext.Session.GetInt32("idUsuario");

@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.IO;
 using System.Data.SQLite;
-using tp6.ViewModel;
+using System.IO;
 
 namespace tp6.Models
 {
@@ -52,7 +49,7 @@ namespace tp6.Models
             command.Parameters.AddWithValue("@_id", ID);
             command.ExecuteNonQuery();
             conexion.Close();
-       }
+        }
         public void Modificar(Cadete cad)
         {
             string cadena = "Data Source=" + Path.Combine(Directory.GetCurrentDirectory(), "Data\\tp6.db");
@@ -67,7 +64,7 @@ namespace tp6.Models
             command.Parameters.AddWithValue("@TipoT", cad.TipoT);
             command.ExecuteNonQuery();
             conexion.Close();
-       }
+        }
 
         public Cadete Buscar(int _id)
         {
@@ -90,7 +87,7 @@ namespace tp6.Models
             reader.Close();
             conexion.Close();
             return Cad;
-            
+
         }
     }
 }

@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.IO;
 using System.Data.SQLite;
+using System.IO;
 
 namespace tp6.Models
 {
@@ -52,7 +50,7 @@ namespace tp6.Models
             command.Parameters.AddWithValue("@_id", _id);
             command.ExecuteNonQuery();
             conexion.Close();
-            
+
         }
 
         public Cliente Buscar(int _id)
@@ -64,7 +62,7 @@ namespace tp6.Models
             var command = conexion.CreateCommand();
             command.CommandText = "Select * from Clientes where idCliente = @_id;";
             command.Parameters.AddWithValue("@_id", _id);
-                
+
             SQLiteDataReader reader = command.ExecuteReader();
             while (reader.Read())
             {

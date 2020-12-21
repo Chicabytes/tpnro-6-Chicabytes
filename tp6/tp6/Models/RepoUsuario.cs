@@ -55,7 +55,49 @@ namespace tp6.Models
 
             return false;
         }
+        public int GetIdUsuario(string user)
+        {
+            string cadena = "Data Source=" + Path.Combine(Directory.GetCurrentDirectory(), "Data\\tp6.db");
+            var conexion = new SQLiteConnection(cadena);
+            conexion.Open();
 
+            var command = conexion.CreateCommand();
+            command.CommandText = "SELECT idUsuario FROM User WHERE Usuario = @user";
+            command.Parameters.AddWithValue("@user", user);
+            command.ExecuteNonQuery();
 
+            var reader = command.ExecuteReader();
+            int idUsuario = 0;
+
+            while (reader.Read())
+            {
+                idUsuario = Convert.ToInt32(reader["idUsuario"]);
+            }
+            conexion.Close();
+
+            return idUsuario;
+        }
+        public Roles GetRol(string User)
+        {
+            string cadena = "Data Source=" + Path.Combine(Directory.GetCurrentDirectory(), "Data\\tp6.db");
+            var conexion = new SQLiteConnection(cadena);
+            conexion.Open();
+
+            var command = conexion.CreateCommand();
+            command.CommandText = "SELECT Rol FROM User WHERE Usuario = @User";
+            command.Parameters.AddWithValue("@User", User);
+            command.ExecuteNonQuery();
+
+            var reader = command.ExecuteReader();
+            Roles rol = 0;
+
+            while (reader.Read())
+            {
+                rol = (Roles)Convert.ToInt32(reader["Rol"]);
+            }
+            conexion.Close();
+
+            return rol;
+        }
     }
 }

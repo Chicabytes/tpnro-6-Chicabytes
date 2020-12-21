@@ -1,7 +1,5 @@
-﻿<form asp-controller="User" asp-action="Index"><input type="submit" class="btn purple-gradient" value="Iniciar Sesion"></form>
-@{ if (ViewBag.UserLogueado == 0)
+﻿@{ if (ViewBag.UserLogueado == 0)
     {
-
         <form asp-controller="Pedido" asp-action="Index"><input type="submit" class="btn peach-gradient" value="Pedidos"></form>
         <form asp-controller="Cadete" asp-action="Index"><input type="submit" class="btn blue-gradient" value="Cadetes"></form>
         <form asp-controller="Cliente" asp-action="Index"><input type="submit" class="btn aqua-gradient" value="Clientes"></form>
@@ -13,9 +11,14 @@
         <form asp-controller="Cadete" asp-action="Index"><input type="submit" class="btn blue-gradient" value="Cadetes"></form>
         <form asp-controller="User" asp-action="Desloguearse"><input type="submit" class="btn purple-gradient-rgba" value="Cerrar Sesion"></form>
     }
-    else
+    else if (ViewBag.UserLogueado == 2)
     {
         <form asp-controller="Cliente" asp-action="Index"><input type="submit" class="btn aqua-gradient" value="Clientes"></form>
+        <form asp-controller="User" asp-action="Desloguearse"><input type="submit" class="btn purple-gradient-rgba" value="Cerrar Sesion"></form>
+    }
+    else
+    {
+        <form asp-controller="User" asp-action="Index"><input type="submit" class="btn purple-gradient" value="Iniciar Sesion"></form>
         <form asp-controller="User" asp-action="Desloguearse"><input type="submit" class="btn purple-gradient-rgba" value="Cerrar Sesion"></form>
     }
 }

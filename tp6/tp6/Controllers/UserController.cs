@@ -34,14 +34,14 @@ namespace tp6.Controllers
             try
             {
                 RepoUsuario repoUsuario = new RepoUsuario();
+                usuarioVM.Id = repoUsuario.GetIdUsuario(usuarioVM.Usuario);
+                usuarioVM.Rol = repoUsuario.GetRol(usuarioVM.Usuario);
                 User usuario = _mapper.Map<User>(usuarioVM);
 
                 if (repoUsuario.Validacion(usuario) && !IsSesionIniciada())
                 {
                     SetSesion(usuario);
                 }
-
-                ViewBag.UserLogueado = GetRol();
                 return Redirect("/Home/Index");
             }
             catch (Exception ex)
@@ -69,8 +69,14 @@ namespace tp6.Controllers
                     if (!repoUsuario.Validacion(usuario))
                     {
                         repoUsuario.AltaUsuario(usuario);
-
-                        return Redirect("/Home/Index");
+                        if(usuario.Rol == Roles.Cadete)
+                        {
+                            return Redirect("/Cadete/AltaCadete");
+                        }
+                        else if(usuario.Rol == Roles.Cliente)
+                        {
+                            return Redirect("/Cliente/AltaCliente");
+                        }
                     }
                     else
                     {
