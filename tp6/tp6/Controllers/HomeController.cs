@@ -22,6 +22,7 @@ namespace tp6.Controllers
         public IActionResult Index()
         {
             ViewBag.UserLogueado = GetRol();
+            ViewBag.NombreUserLogueado = GetUser();
             RepoUsuario repo = new RepoUsuario();
             User NUser = new User();
             NUser.Usuario = GetUser();

@@ -22,7 +22,7 @@ namespace tp6.Controllers
 
         public IActionResult Index()
         {
-            if (IsSesionIniciada() && (GetRol() == 0 || GetRol() == 2))
+            if (IsSesionIniciada())
             {
                 try 
                 { 

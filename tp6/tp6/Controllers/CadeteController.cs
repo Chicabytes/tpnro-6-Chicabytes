@@ -21,7 +21,7 @@ namespace tp6.Controllers
         }
         public IActionResult Index()
         {
-            if (IsSesionIniciada() && GetRol() == 0)
+            if (IsSesionIniciada() && (GetRol() == 0 || GetRol() == 1))
             {
                 RepoCadetes repo = new RepoCadetes();
                 List<Cadete> ListaCadetes = repo.GetAll();
