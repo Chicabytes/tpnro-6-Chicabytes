@@ -53,8 +53,7 @@ namespace tp6.Controllers
         }
         internal int GetIdUsuario()
         {
-            int idUsuario = (int)HttpContext.Session.GetInt32("idUsuario");
-            return idUsuario;
+            return (int)HttpContext.Session.GetInt32("idUsuario");
         }
 
         internal void Logout()

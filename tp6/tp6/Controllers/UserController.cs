@@ -64,38 +64,39 @@ namespace tp6.Controllers
                 string mensaje = "";
                 if (ModelState.IsValid)
                 {
-                    RepoUsuario repoUsuario = new RepoUsuario();
+                    RepoUsuario repo = new RepoUsuario();
                     User usuario = _mapper.Map<User>(UsuarioVM);
-                    if (!repoUsuario.Validacion(usuario))
+                    if (!repo.Validacion(usuario))
                     {
-                        repoUsuario.AltaUsuario(usuario);
-                        if(usuario.Rol == Roles.Cadete)
+                        repo.AltaUsuario(usuario);
+                        SetSesion(usuario);
+                        usuario.Id = repo.GetIdUsuario(usuario.Usuario);
+                        if (usuario.Rol == Roles.Cadete)
                         {
-                            return Redirect("/Cadete/AltaCadete");
+                            return RedirectToAction("AltaCadete", "Cadete", new { idUser = usuario.Id });
                         }
                         else if(usuario.Rol == Roles.Cliente)
                         {
-                            return Redirect("/Cliente/AltaCliente");
+                            return RedirectToAction("AltaCliente", "Cliente", new { idUser = usuario.Id });
                         }
                     }
                     else
                     {
                         mensaje = "El usuario ya existe";
-                        return Content(mensaje);
+                        
                     }
+                    return Content(mensaje);
                 }
                 else
                 {
                     mensaje = "Se produjo un error, faltan ingresar datos";
+                    return Content(mensaje);
                 }
-                return Content(mensaje);
-
             }
             catch (Exception ex)
             {
                 return Content(ex.ToString());
             }
-
         }
         public IActionResult Desloguearse()
         {

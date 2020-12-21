@@ -56,11 +56,11 @@ namespace tp6.Controllers
                 return Redirect("../Home/Index");
             }
         }
-        public IActionResult AltaCliente()
+        public IActionResult AltaCliente(int idUser)
         {
             if (IsSesionIniciada() && (GetRol() == 0 || GetRol() == 2))
             {
-                return View(new ClienteViewModel());
+                return View(new ClienteViewModel() { IdCliente = idUser});
             }
             else
             {

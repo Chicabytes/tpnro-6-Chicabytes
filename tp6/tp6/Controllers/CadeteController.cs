@@ -33,11 +33,11 @@ namespace tp6.Controllers
                 return Redirect("../Home/Index");
             }
         }
-        public IActionResult AltaCadete()
+        public IActionResult AltaCadete(int idUser)
         {
             if (IsSesionIniciada() && (GetRol() == 0 || GetRol() == 1))
             {
-                return View(new CadeteViewModel());
+                return View(new CadeteViewModel() { Id = idUser});
             }
             else
             {
