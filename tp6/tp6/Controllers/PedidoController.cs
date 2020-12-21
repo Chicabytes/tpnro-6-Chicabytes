@@ -24,6 +24,7 @@ namespace tp6.Controllers
         {
             if (IsSesionIniciada())
             {
+                ViewBag.UserLogueado = GetRol();
                 try 
                 { 
                     RepoPedidos repo = new RepoPedidos();
